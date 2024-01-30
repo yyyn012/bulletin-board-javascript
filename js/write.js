@@ -1,18 +1,5 @@
 const writeForm = document.querySelector("#writeForm");
 
-const submitHandler = (e) => {
-  e.preventDefault();
-  const subject = e.target.subject.value;
-  const writer = e.target.writer.value;
-  const content = e.target.content.value;
-
-  console.log(subject);
-  console.log(writer);
-  console.log(content);
-};
-
-writeForm.addEventListener("submit", submitHandler);
-
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
     this.index = indexNum;
@@ -56,3 +43,32 @@ const recordDate = () => {
 
   return arr.join("-");
 };
+
+// submit 이벤트가 발생하면 객체를 생성해서 localStorage에 저장해주는 함수이다.
+const submitHandler = (e) => {
+  e.preventDefault();
+  const subject = e.target.subject.value;
+  const writer = e.target.writer.value;
+  const content = e.target.content.value;
+
+  try {
+    // boards를 가져온다.
+    const boardsObj = JSON.parse(localStorage.getItem("boards"));
+
+    // 객체 추가
+    const index = boardsObj.length;
+    const instance = new Board(index, subject, writer, content);
+    boardsObj.push(instance);
+
+    // boards 저장
+    const boardsStr = JSON.stringify(boardsObj);
+    localStorage.setItem("boards", boardsStr);
+    location.href = "/board/view.html?index=" + index;
+  } catch (e) {
+    // 예외 발생 시 메시지 출력
+    alert(e.message);
+    console.error(e);
+  }
+};
+
+writeForm.addEventListener("submit", submitHandler);
