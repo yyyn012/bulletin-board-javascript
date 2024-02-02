@@ -31,3 +31,11 @@ for (let i = 0; i < viewForm.length; i++) {
   const id = viewForm[i].id;
   viewForm[i].innerHTML += " " + board[id];
 }
+
+const modifyBtn = document.querySelector("#modify");
+
+const modifyBtnHandler = (e) => {
+  console.log("수정");
+};
+
+modifyBtn.addEventListener("click", modifyBtnHandler);
