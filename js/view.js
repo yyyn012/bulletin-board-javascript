@@ -11,6 +11,20 @@ const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
 
+// 조회수 구현
+const beforeUrl = document.referrer;
+//  변수 beforeUrl을 선언하고 여기에 글 작성 직후 조회수가 올라가지 않도록 이전 페이지의 url이 담겨있는 document.referrer을 저장해준다.
+
+const viewCount = (beforeUrl) => {
+  if (beforeUrl.split("/").pop() === "list.html") {
+    board.views++;
+    const viewCountStr = JSON.stringify(boardsObj);
+    localStorage.setItem("boards", viewCountStr);
+  }
+};
+
+viewCount(beforeUrl);
+
 const viewForm = document.querySelectorAll("#viewForm > div");
 
 for (let i = 0; i < viewForm.length; i++) {

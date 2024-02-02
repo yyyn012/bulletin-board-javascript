@@ -31,7 +31,6 @@ const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
   tbody.innerHTML += template(i, boardsObj[i]);
-  console.log(template(i, boardsObj[i]));
 }
 
 // template함수에서 index와 objVaule를 받을 수 있도록 했다.
