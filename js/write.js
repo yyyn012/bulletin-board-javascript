@@ -1,5 +1,6 @@
 const writeForm = document.querySelector("#writeForm");
 
+// 데이터 기본 틀
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
     this.index = indexNum;
@@ -7,10 +8,12 @@ class Board {
     this.Writer = writerStr;
     this.Content = contentStr;
     this.date = recordDate();
-    this.views = 0;
+    this.views = -1;
+    this.refresh = false;
   }
   // 객체를 생성할 때 4개의 매개변수(indexNum, subjectStr, writerStr, contentStr)를 받아오고 각 속성에 맞춰 값을 할당해놓는다.
 
+  // 값 설정 시 빈 값 체크
   set Subject(value) {
     if (value.length === 0) throw new Error("제목을 입력해주세요");
     this.subject = value;
@@ -29,7 +32,7 @@ class Board {
   }
 }
 
-// recordDate()함수는 현재의 날짜를 계산(yyyy-mm-dd형식으로 반환)해주는 함수이다. date속성의 값이 된다.
+// 현재 날짜 반환 함수
 const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
@@ -44,7 +47,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// submit 이벤트가 발생하면 객체를 생성해서 localStorage에 저장해주는 함수이다.
+// 글작성 버튼
 const submitHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -52,7 +55,7 @@ const submitHandler = (e) => {
   const content = e.target.content.value;
 
   try {
-    // boards를 가져온다.
+    // boards 가져오기
     const boardsObj = JSON.parse(localStorage.getItem("boards"));
 
     // 객체 추가
