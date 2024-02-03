@@ -35,7 +35,7 @@ for (let i = 0; i < viewForm.length; i++) {
 const modifyBtn = document.querySelector("#modify");
 
 const modifyBtnHandler = (e) => {
-  console.log("수정");
+  location = "/board/modify.html" + idx;
 };
 
 modifyBtn.addEventListener("click", modifyBtnHandler);
