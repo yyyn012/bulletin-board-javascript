@@ -48,4 +48,11 @@ const modifyHandler = (e) => {
   }
 };
 
+const backBtn = document.querySelector("#back");
+
+const backBtnHandler = (e) => {
+  location.href = document.referrer;
+};
+
 modifyForm.addEventListener("submit", modifyHandler);
+backBtn.addEventListener("click", backBtnHandler);
