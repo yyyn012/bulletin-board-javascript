@@ -15,6 +15,7 @@ const board = boardsObj[index];
 const beforeUrl = document.referrer;
 //  변수 beforeUrl을 선언하고 여기에 글 작성 직후 조회수가 올라가지 않도록 이전 페이지의 url이 담겨있는 document.referrer을 저장해준다.
 
+// 조회수
 const viewCount = (beforeUrl) => {
   if (beforeUrl.split("/").pop() === "list.html") {
     board.views++;
@@ -22,9 +23,9 @@ const viewCount = (beforeUrl) => {
     localStorage.setItem("boards", viewCountStr);
   }
 };
-
 viewCount(beforeUrl);
 
+// 데이터 출력
 const viewForm = document.querySelectorAll("#viewForm > div");
 
 for (let i = 0; i < viewForm.length; i++) {
@@ -32,6 +33,7 @@ for (let i = 0; i < viewForm.length; i++) {
   viewForm[i].innerHTML += " " + board[id];
 }
 
+// 수정 버튼
 const modifyBtn = document.querySelector("#modify");
 
 const modifyBtnHandler = (e) => {
@@ -39,3 +41,20 @@ const modifyBtnHandler = (e) => {
 };
 
 modifyBtn.addEventListener("click", modifyBtnHandler);
+
+// 삭제 버튼
+const deleteBtn = document.querySelector("#delete");
+
+console.log(boardsObj);
+const deleteBtnHandler = (e) => {
+  boardsObj.splice(index, 1);
+  for (let i = 0; i < boardsObj.length; i++) {
+    boardsObj[i].index = i;
+  }
+
+  const setBoardsStr = JSON.stringify(boardsObj);
+  localStorage.setItem("boards", setBoardsStr);
+  location.href = "/board/list.html";
+};
+
+deleteBtn.addEventListener("click", deleteBtnHandler);
