@@ -1,47 +1,53 @@
-/* body {
+body {
   margin: 0;
   padding: 0;
 }
 
-#header {
+.logo {
   width: 100%;
-  position: fixed;
-  top: 0;
-  padding: 20px;
-  background-color: white;
-  z-index: 1;
+  padding: 50px;
+  color: black;
+  text-decoration: none;
+}
+
+h2 {
+  padding: 50px 0 30px 50px;
 }
 
 table {
-  display: flex;
-  justify-content: center;
-  padding: 150px 0 70px 0;
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 
 td,
 th {
   text-align: center;
   padding: 0.5rem 1rem;
+  border-collapse: collapse;
 }
 
-tbody tr:nth-child(odd) {
+a {
+  text-decoration: none;
+}
+
+/* tbody tr:nth-child(odd) {
   background-color: #eee;
 }
 
 th {
   background: #444;
   color: #fff;
-}
+} */
 
-.pagination {
+/* .pagination {
   background-color: #333;
   padding: 1rem;
   text-align: center;
   display: flex;
   justify-content: center;
-}
+} */
 
-@media (max-width: 840px) {
+/* @media (max-width: 840px) {
   .pagination {
     display: none;
   }

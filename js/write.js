@@ -18,8 +18,6 @@ class Board {
     if (value.length === 0) throw new Error("제목을 입력해주세요");
     this.subject = value;
   }
-  //  setter로 매개 변수 subjectStr을 받게 되면 길이가 0이 아닌 지 검사하고 subject속성에 subjectStr 값이 할당된다.
-  //  길이가 0이라면 예외를 발생시킨다.
 
   set Writer(value) {
     if (value.length === 0) throw new Error("작성자를 입력해주세요");
@@ -32,7 +30,7 @@ class Board {
   }
 }
 
-// 현재 날짜 반환 함수
+// 날짜 반환 함수
 const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
