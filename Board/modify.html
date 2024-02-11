@@ -10,22 +10,24 @@
     <h1><a class="logo" href="/index.html">LOGO</a></h1>
     <h2>글 수정</h2>
 
-    <form id="modifyForm">
-      <div>
-        제목 :
-        <input type="text" name="subject" />
-      </div>
-      <div>
-        작성자 :
-        <input type="text" name="writer" />
-      </div>
-      <div>
-        내용 :
-        <textarea name="content"></textarea>
-      </div>
-      <input type="submit" value="수정완료" />
-    </form>
-    <button id="back" style="margin-top: 10px">뒤로가기</button>
+    <div class="form-area">
+      <form id="modifyForm">
+        <div>
+          <span>제목</span>
+          <input type="text" name="subject" />
+        </div>
+        <div>
+          <span>작성자</span>
+          <input type="text" name="writer" />
+        </div>
+        <div>
+          <span>내용</span>
+          <textarea name="content"></textarea>
+        </div>
+        <input class="submit-btn" type="submit" value="수정완료" />
+      </form>
+      <button id="back" style="margin-top: 10px">뒤로가기</button>
+    </div>
     <script src="/js/modify.js"></script>
   </body>
 </html>

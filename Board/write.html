@@ -12,22 +12,26 @@
     </h1>
     <h2>게시판 작성하기</h2>
 
-    <form id="writeForm">
-      <div>
-        제목 :
-        <input type="text" name="subject" />
-      </div>
-      <div>
-        작성자 :
-        <input type="text" name="writer" />
-      </div>
-      <div>
-        내용 :
-        <textarea type="text" name="content"></textarea>
-      </div>
-      <input type="submit" value="글작성" />
-    </form>
-    <button style="margin-top: 10px"><a href="./list.html">뒤로가기</a></button>
+    <div class="form-area">
+      <form id="writeForm">
+        <div>
+          <span>제목</span>
+          <input type="text" name="subject" />
+        </div>
+        <div>
+          <span>작성자</span>
+          <input type="text" name="writer" />
+        </div>
+        <div>
+          <span>내용</span>
+          <textarea type="text" name="content"></textarea>
+        </div>
+        <input class="submit-btn" type="submit" value="글작성" />
+      </form>
+      <button style="margin-top: 10px">
+        <a href="./list.html">뒤로가기</a>
+      </button>
+    </div>
     <script src="/js/write.js"></script>
   </body>
 </html>
