@@ -105,7 +105,7 @@ th {
 a {
   text-decoration: none;
 }
-
+/* 
 .submit-btn,
 button {
   position: absolute;
@@ -115,11 +115,30 @@ button {
   background-color: #ccc;
   border-radius: 5px;
   padding: 7px;
+} */
+
+.btn-area {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
+.submit-btn,
+button {
+  border: none;
+  background-color: #ccc;
+  border-radius: 5px;
+  padding: 7px;
+  margin: 10px;
+}
+
+.submit-btn,
 .submit-btn {
+  position: absolute;
   right: 80px;
-  z-index: 1;
+  bottom: 0;
 }
 
 /* tbody tr:nth-child(odd) {

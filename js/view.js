@@ -29,6 +29,19 @@ if (!board.refresh) {
 
 // 데이터 출력
 const viewForm = document.querySelectorAll("#viewForm > div");
+const subject = document.querySelector("#subject");
+const writer = document.querySelector("#writer");
+const date = document.querySelector("#date");
+const content = document.querySelector("#content");
+
+function paintViewForm() {
+  const input = document.createElement("input");
+  const textarea = document.createElement("textarea");
+  subject.appendChild(input);
+  writer.appendChild(input);
+  date.appendChild(input);
+  content.appendChild(textarea);
+}
 
 for (let i = 0; i < viewForm.length; i++) {
   const id = viewForm[i].id;
@@ -57,6 +70,8 @@ const deleteBtnHandler = (e) => {
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", setBoardsStr);
   location.href = "/board/list.html";
+
+  alert("삭제되었습니다.");
 };
 
 deleteBtn.addEventListener("click", deleteBtnHandler);
