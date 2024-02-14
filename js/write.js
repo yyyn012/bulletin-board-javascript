@@ -11,21 +11,18 @@ class Board {
     this.views = -1;
     this.refresh = false;
   }
-  // 객체를 생성할 때 4개의 매개변수(indexNum, subjectStr, writerStr, contentStr)를 받아오고 각 속성에 맞춰 값을 할당해놓는다.
 
   // 값 설정 시 빈 값 체크
   set Subject(value) {
-    if (value.length === 0) throw new Error("제목을 입력해주세요");
+    if (value.length === 0) throw new Error("제목을 입력해주세요.");
     this.subject = value;
   }
-
   set Writer(value) {
-    if (value.length === 0) throw new Error("작성자를 입력해주세요");
+    if (value.length === 0) throw new Error("작성자를 입력해주세요.");
     this.writer = value;
   }
-
   set Content(value) {
-    if (value.length === 0) throw new Error("내용을 입력해주세요");
+    if (value.length === 0) throw new Error("내용을 입력해주세요.");
     this.content = value;
   }
 }
@@ -45,7 +42,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 글작성 버튼
+// 글 작성 버튼
 const submitHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -53,7 +50,7 @@ const submitHandler = (e) => {
   const content = e.target.content.value;
 
   try {
-    // boards 가져오기
+    // board 가져오기
     const boardsObj = JSON.parse(localStorage.getItem("boards"));
 
     // 객체 추가
