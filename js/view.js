@@ -21,8 +21,8 @@ if (!board.refresh) {
   }
 }
 
-//  데이터 출력
-const viewForm = document.querySelector("#viewForm > div");
+// 데이터 출력
+const viewForm = document.querySelectorAll("#viewForm > div");
 
 for (let i = 0; i < viewForm.length; i++) {
   const id = viewForm[i].id;
@@ -50,6 +50,8 @@ const deleteBtnHandler = (e) => {
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", setBoardsStr);
   location.href = "/board/list.html";
+
+  alert("삭제되었습니다.");
 };
 
 deleteBtn.addEventListener("click", deleteBtnHandler);

@@ -7,14 +7,14 @@ const board = boardsObj[index];
 
 // 게시글 데이터 값 출력
 for (let i = 0; i < modifyFrmList.length; i++) {
-  const element = modifyFrmList[i].childNodes[1];
+  const element = modifyFrmList[i].childNodes[3];
   const id = element.name;
   element.value = board[id];
 }
 
 // 작성한 입력 값이 빈 값인 지 검사
 const isEmpty = (subject, writer, content) => {
-  if (subject.length === 0) throw new Error("제목을 입력해주세요");
+  if (subject.length === 0) throw new Error("제목을 입력해주세요.");
   if (writer.length === 0) throw new Error("작성자를 입력해주세요.");
   if (content.length === 0) throw new Error("내용을 입력해주세요.");
 };
@@ -34,7 +34,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정완료 버튼
+// 수정 완료 버튼
 const modifyHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -56,9 +56,9 @@ const modifyHandler = (e) => {
   }
 };
 
+// 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
 
-// 뒤로가기 버튼
 const backBtnHandler = (e) => {
   location.href = document.referrer;
 };
