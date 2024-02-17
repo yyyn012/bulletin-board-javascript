@@ -3,8 +3,40 @@ body {
   padding: 0;
 }
 
-/* header */
+/* index.html */
 
+.body-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.start-btn {
+  border: 1px solid rgb(177, 227, 228);
+  border-radius: 25px;
+  background-color: rgb(177, 227, 228);
+  padding: 15px;
+  box-shadow: 3px 3px 3px 3px #c1c1c1;
+}
+
+.start-btn:hover {
+  background-color: rgb(167, 215, 215);
+}
+
+.start-btn:active {
+  box-shadow: inset;
+  background-color: rgb(167, 215, 215);
+  transform: translateY(4px);
+}
+
+/* header */
 a {
   text-decoration: none;
   color: black;
@@ -148,6 +180,18 @@ button {
   padding: 7px;
   margin: 10px;
   cursor: pointer;
+}
+
+.submit-btn:hover,
+button:hover {
+  background-color: #bebdbd;
+}
+
+.submit-btn:active,
+button:active {
+  box-shadow: inset;
+  background-color: #bebdbd;
+  transform: translate(1px, 1px);
 }
 
 .submit-btn {
