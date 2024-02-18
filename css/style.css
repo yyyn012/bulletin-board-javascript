@@ -19,10 +19,9 @@ body {
 }
 
 .start-btn {
-  border: 1px solid rgb(177, 227, 228);
-  border-radius: 25px;
-  background-color: rgb(177, 227, 228);
   padding: 15px;
+  background-color: rgb(177, 227, 228);
+  border-radius: 25px;
   box-shadow: 3px 3px 3px 3px #c1c1c1;
 }
 
@@ -46,7 +45,6 @@ a {
   width: 100%;
   padding: 50px;
   color: black;
-  text-decoration: none;
 }
 
 h2 {
@@ -54,17 +52,17 @@ h2 {
   padding: 50px 0 30px 50px;
 }
 
-/* table or form */
+/* table and form */
 
 .table-area,
 .form-area {
   position: relative;
+  width: 1300px;
+  margin: 0 auto;
+  padding-bottom: 100px;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  margin: 0 auto;
-  padding-bottom: 100px;
-  width: 1300px;
 }
 
 table,
@@ -79,11 +77,16 @@ table {
   border: none;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
-  border-radius: 10px;
+}
+
+td,
+th {
+  text-align: center;
+  padding: 13px;
 }
 
 tr {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #c1c1c1;
 }
 
 form {
@@ -130,20 +133,11 @@ textarea {
 
 @media (max-width: 1300px) {
   .table-area,
-  .form-area {
-    width: 95vw;
-  }
+  .form-area,
   table,
   #viewForm {
     width: 95vw;
   }
-}
-
-td,
-th {
-  text-align: center;
-  padding: 0.5rem 1rem;
-  border-collapse: collapse;
 }
 
 /* view */
