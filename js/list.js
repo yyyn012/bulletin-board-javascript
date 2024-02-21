@@ -14,7 +14,10 @@ const template = (index, objValue) => {
   return `
   <tr>
   <td>${index + 1}</td>
-  <td>
+  <td 
+  onmouseover="onMouseOver(event)"
+  onmouseout="onMouseOut(event)"
+  >
   <a href="/board/view.html?index=${objValue.index}">
   ${objValue.subject}
   </a></td>
@@ -33,4 +36,12 @@ for (let i = 0; i < boardsObj.length; i++) {
   boardsObj[i].refresh = false;
   const refreshStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", refreshStr);
+}
+
+function onMouseOver(event) {
+  event.target.style.color = "#ccc";
+}
+
+function onMouseOut(event) {
+  event.target.style.color = "#black";
 }
