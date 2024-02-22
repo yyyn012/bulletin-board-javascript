@@ -14,13 +14,15 @@ const template = (index, objValue) => {
   return `
   <tr>
   <td>${index + 1}</td>
-  <td 
-  onmouseover="onMouseOver(event)"
-  onmouseout="onMouseOut(event)"
+  <td>
+  <a 
+  onmouseover={mouseOver(event)} 
+  onmouseout={mouseOut(event)} 
+  href="/board/view.html?index=${objValue.index}"
   >
-  <a href="/board/view.html?index=${objValue.index}">
   ${objValue.subject}
-  </a></td>
+  </a>
+  </td>
   <td>${objValue.writer}</td>
   <td>${objValue.date}</td>
   <td>${objValue.views}</td>
@@ -38,10 +40,13 @@ for (let i = 0; i < boardsObj.length; i++) {
   localStorage.setItem("boards", refreshStr);
 }
 
-function onMouseOver(event) {
+const td = document.querySelectorAll("td");
+const td_a = document.querySelectorAll("td > a");
+
+function mouseOver(event) {
   event.target.style.color = "#ccc";
 }
 
-function onMouseOut(event) {
-  event.target.style.color = "#black";
+function mouseOut(event) {
+  event.target.style.color = "#000";
 }
