@@ -40,6 +40,7 @@ for (let i = 0; i < boardsObj.length; i++) {
   localStorage.setItem("boards", refreshStr);
 }
 
+// mouse 호버 시 제목 글자 색 변경
 const td = document.querySelectorAll("td");
 const td_a = document.querySelectorAll("td > a");
 
