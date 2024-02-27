@@ -1,11 +1,12 @@
 const writeForm = document.querySelector("#writeForm");
+
 // 데이터 기본 틀
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
     this.index = indexNum;
-    this.Subject = subjectStr;
-    this.Writer = writerStr;
-    this.Content = contentStr;
+    this.subject = subjectStr;
+    this.writer = writerStr;
+    this.content = contentStr;
     this.date = recordDate();
     this.views = -1;
     this.refresh = false;
@@ -21,7 +22,7 @@ class Board {
     this.writer = value;
   }
   set Content(value) {
-    if (value.length === 0) throw new Error("내용을 입력해주세요.");
+    if (value === 0) throw new Error("내용을 입력해주세요.");
     this.content = value;
   }
 }
@@ -47,7 +48,6 @@ const submitHandler = (e) => {
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
   const content = e.target.content.value;
-
   try {
     // board 가져오기
     const boardsObj = JSON.parse(localStorage.getItem("boards"));
