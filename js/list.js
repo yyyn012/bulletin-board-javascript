@@ -2,7 +2,7 @@ let boardsStr = localStorage.getItem("boards");
 
 // localStorage 초기값 지정
 if (boardsStr === null) {
-  const listStr = JSON.stringify([]);
+  const listStr = localStorage.stringify([]);
   localStorage.setItem("boards", listStr);
   boardsStr = listStr;
 }
@@ -13,19 +13,18 @@ const boardsObj = JSON.parse(boardsStr);
 const template = (index, objValue) => {
   return `
   <tr>
-  <td>${index + 1}</td>
-  <td>
-  <a 
-  onmouseover={mouseOver(event)} 
-  onmouseout={mouseOut(event)} 
-  href="/board/view.html?index=${objValue.index}"
-  >
-  ${objValue.subject}
-  </a>
-  </td>
-  <td>${objValue.writer}</td>
-  <td>${objValue.date}</td>
-  <td>${objValue.views}</td>
+    <td>${index + 1}</td>
+    <td>
+      <a onmouseover={mouseOver(event)}
+        onmouseout={mouseOut(event)}
+        href="/board/view.html?index=${objValue.index}"
+      >
+        ${objValue.subject}
+      </a>
+    </td>
+    <td>${objValue.writer}</td>
+    <td>${objValue.date}</td>
+    <td>${objValue.views}</td>
   </tr>
   `;
 };
@@ -40,9 +39,7 @@ for (let i = 0; i < boardsObj.length; i++) {
   localStorage.setItem("boards", refreshStr);
 }
 
-// mouse 호버 시 제목 글자 색 변경
-const td = document.querySelectorAll("td");
-const td_a = document.querySelectorAll("td > a");
+// mouseover 시 제목 글자 색 변경
 
 function mouseOver(event) {
   event.target.style.color = "#ccc";

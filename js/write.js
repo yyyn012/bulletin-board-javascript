@@ -1,5 +1,4 @@
 const writeForm = document.querySelector("#writeForm");
-
 // 데이터 기본 틀
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
