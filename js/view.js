@@ -22,7 +22,7 @@ if (!board.refresh) {
 }
 
 // 데이터 출력
-const viewForm = document.querySelectorAll("#viewForm > div");
+const viewForm = document.querySelectorAll("#view-form > div");
 
 for (let i = 0; i < viewForm.length; i++) {
   const id = viewForm[i].id;

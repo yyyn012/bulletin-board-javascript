@@ -96,8 +96,8 @@ form {
   flex-direction: column;
 }
 
-#writeForm > div,
-#modifyForm > div {
+#write-form > div,
+#modify-form > div {
   display: flex;
   justify-content: center;
   width: 1000px;
@@ -105,8 +105,8 @@ form {
   padding: 10px;
 }
 
-#writeForm > div > span,
-#modifyForm > div > span {
+#write-form > div > span,
+#modify-form > div > span {
   width: 100px;
   display: flex;
   justify-content: center;
@@ -115,14 +115,14 @@ form {
   padding-right: 30px;
 }
 
-#writeForm > div > textarea,
-#modifyForm > div > textarea {
+#write-form > div > textarea,
+#modify-form > div > textarea {
   height: 100px;
 }
 
-#writeForm > div > input,
+#write-form > div > input,
 textarea,
-#modifyForm > div > input,
+#modify-form > div > input,
 textarea {
   width: 80vw;
   text-align: center;
@@ -135,21 +135,21 @@ textarea {
   .table-area,
   .form-area,
   table,
-  #viewForm {
+  #view-form {
     width: 95vw;
   }
 }
 
 /* view */
 
-#viewForm > div {
+#view-form > div {
   width: 1000px;
   height: 60px;
   padding: 10px;
   border-bottom: 1px solid #ccc;
 }
 
-#viewForm > div > span {
+#view-form > div > span {
   padding-right: 30px;
   line-height: 60px;
   align-items: center;

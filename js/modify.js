@@ -1,5 +1,5 @@
-const modifyForm = document.querySelector("#modifyForm");
-const modifyFrmList = document.querySelectorAll("#modifyForm > div");
+const modifyForm = document.querySelector("#modify-form");
+const modifyFrmList = document.querySelectorAll("#modify-form > div");
 const idx = location.search;
 const index = location.search.split("=")[1];
 const boardsObj = JSON.parse(localStorage.getItem("boards"));
