@@ -1,53 +1,49 @@
+// 데이터 가져오기
 const boardsStr = localStorage.getItem("boards");
 const boardsObj = JSON.parse(boardsStr);
 
-//url물음표 뒤에 있는 파라미터(쿼리스트링)을 변수 idx에 저장
+// idx에 쿼리스트링 저장
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
-// 이전 페이지 주소
-const beforeUrl = document.referrer;
+// beforeUrl에 이전 url 저장
+const beforeUrl = location.referrer;
 
-// 조회수
+// 조회수 설정
 if (!board.refresh) {
-  // boards.refresh가 false일 때
   board.views++;
-  // 조회수가 오르고
   board.refresh = true;
-  // board.refresh의 값을 true로 바꿈
-  const viewCountStr = JSON.stringify(boardsObj);
-  // boardsObj를 json언어로 바꾼 데이터를 viewCountStr에 저장
+  // 새로고침 시에도 값이 true이기 때문에 조회수가 오르지 않음
+  const viewCountStr = localStorage.getItem("boards");
   localStorage.setItem("boards", viewCountStr);
-  // 지금까지의 데이터 저장
 } else {
-  // board.refresh의 값이 false가 아닐 경우
   if (beforeUrl === " ") {
-    // 만약 이전 url이 빈 값이라면(페이지를 이동한 적 없다면)
+    // url을 직접 입력하여 들어온 경우 조회수 증가 후 저장
     board.views++;
-    // 조회수가 오르고
-    const viewCountStr = JSON.stringify(boardsObj);
+    const viewCountStr = localStorage.getItem("boards");
     localStorage.setItem("boards", viewCountStr);
-    // 지금까지의 값을 저장한다.
   }
 }
 
 // 데이터 출력
-const viewForm = document.querySelectorAll("#view-form > div");
+const viewFrmDiv = document.querySelectorAll("#view-form > div");
 
-for (let i = 0; i < viewForm.length; i++) {
-  const id = viewForm[i].id;
-  // viewForm[0].id는 subject, viewForm[1].id는 writer이다.
-  viewForm[i].innerHTML += " " + board[id];
-  // board[subject]는 유저가 입력한 제목의 값이다.
-  // 따라서 view.html에 입력한 각각의 id값에 따라 유저가 입력한 value가 innerHTML로 적히게 된다.
+for (let i = 0; i < viewFrmDiv.length; i++) {
+  const id = viewFrmDiv[i].id;
+  viewFrmDiv[i].innerHTML += " " + board[id];
 }
+// i가 0일 경우
+// viewFrmDiv[0]은 view-form의 첫번째 div이다.
+// id = viewFrmDiv[0].id = subject이다.
+// board[id]는 boardsObj[0][subject]이다.
+// 따라서 유저가 subject div에 작성한 값이 viewFrmDiv[0]에 출력된다.
 
 // 수정 버튼
 const modifyBtn = document.querySelector("#modify");
 
 const modifyBtnHandler = (e) => {
   location = "/board/modify.html" + idx;
-  // modify.html페이지로 이동한다. (idx는 쿼리스트링으로 저장되어 있음)
+  // 현재 보고 있는 페이지의 쿼리스트링이 idx에 저장되어 바로 해당 페이지의 modify.html페이지로 이동하게 된다.
 };
 
 modifyBtn.addEventListener("click", modifyBtnHandler);
@@ -57,12 +53,18 @@ const deleteBtn = document.querySelector("#delete");
 
 const deleteBtnHandler = (e) => {
   boardsObj.splice(index, 1);
+  // 이벤트가 일어난 boardsObj의 index값이 삭제된다.
+
+  // 삭제된 인덱스를 제외하고 인덱스 값을 앞으로 한 칸씩 당겨준다.
   for (let i = 0; i < boardsObj.length; i++) {
     boardsObj[i].index = i;
   }
 
-  const setBoardsStr = JSON.stringify(boardsObj);
-  localStorage.setItem("boards", setBoardsStr);
+  // 데이터 저장
+  const setBoardStr = JSON.stringify(boardsObj);
+  localStorage.setItem("boards", setBoardStr);
+
+  // list.html로 이동
   location.href = "/board/list.html";
 
   alert("삭제되었습니다.");
