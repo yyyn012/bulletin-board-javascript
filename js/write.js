@@ -1,3 +1,5 @@
+// 유저가 입력한 값들을 인스턴스 객체로 전달하여 저장 후 view.html로 넘어가기
+
 const writeForm = document.querySelector("#write-form");
 
 // 데이터 기본 틀(construtor를 사용하여 클래스 Board의 인스턴스 객체 생성)

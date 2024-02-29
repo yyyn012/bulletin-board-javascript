@@ -1,4 +1,4 @@
-// 데이터 가져오기
+// 데이터 가져오기, boards초기값 지정, 템플릿 생성 및 반영, 마우스 오버 시 제목 글자 색 변경
 let boardsStr = localStorage.getItem("boards");
 
 // boards가 빈 값인 경우 초기값 지정하기

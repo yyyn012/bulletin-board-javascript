@@ -1,3 +1,5 @@
+// 조회수 설정, 데이터 가져와서 출력, 수정(해당 수정 페이지로 이동), 삭제 버튼(삭제 후 인덱스 값 앞으로 당기기)
+
 // 데이터 가져오기
 const boardsStr = localStorage.getItem("boards");
 const boardsObj = JSON.parse(boardsStr);
@@ -14,13 +16,13 @@ if (!board.refresh) {
   board.views++;
   board.refresh = true;
   // 새로고침 시에도 값이 true이기 때문에 조회수가 오르지 않음
-  const viewCountStr = localStorage.getItem("boards");
+  const viewCountStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", viewCountStr);
 } else {
   if (beforeUrl === " ") {
     // url을 직접 입력하여 들어온 경우 조회수 증가 후 저장
     board.views++;
-    const viewCountStr = localStorage.getItem("boards");
+    const viewCountStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", viewCountStr);
   }
 }

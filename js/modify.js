@@ -14,12 +14,12 @@ for (let i = 0; i < modifyFrmList.length; i++) {
 
 // 작성한 입력 값이 빈 값인 지 검사
 const isEmpty = (subject, writer, content) => {
-  if (subject.length === 0) throw new Error("제목을 입력해주세요.");
-  if (writer.length === 0) throw new Error("작성자를 입력해주세요.");
-  if (content.length === 0) throw new Error("내용을 입력해주세요.");
+  if (subject.length === 0) throw new Error("제목을 입력하세요.");
+  if (writer.length === 0) throw new Error("작성자를 입력하세요.");
+  if (content.length === 0) throw new Error("내용을 입력하세요.");
 };
 
-// 날짜 반환 함수
+// 날짜 변환 함수
 const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
@@ -56,9 +56,8 @@ const modifyHandler = (e) => {
   }
 };
 
-// 뒤로 가기 버튼
+//  뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
-
 const backBtnHandler = (e) => {
   location.href = document.referrer;
 };
