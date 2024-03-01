@@ -48,6 +48,7 @@ const modifyHandler = (e) => {
     board.subject = subject;
     board.writer = writer;
     board.content = content;
+    board.date = recordDate();
 
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);

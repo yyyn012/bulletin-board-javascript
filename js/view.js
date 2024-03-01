@@ -9,7 +9,7 @@ const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
 // beforeUrl에 이전 url 저장
-const beforeUrl = location.referrer;
+const beforeUrl = document.referrer;
 
 // 조회수 설정
 if (!board.refresh) {
