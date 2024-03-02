@@ -3,7 +3,7 @@
 // 데이터 가져오기
 let boardsStr = localStorage.getItem("boards");
 
-// 초기값 지정하기
+// boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
   localStorage.setItem("boards", listStr);
@@ -15,23 +15,24 @@ const boardsObj = JSON.parse(boardsStr);
 // 템플릿 생성
 const template = (index, objValue) => {
   return `
-  <tr>
-    <td>${index + 1}</td>
-    <td>
-      <a onmouseover={mouseOver(event)}
-        onmouseout={mouseOut(event)}
-        href="/board/view.html?index=${objValue.index}"
-      >${objValue.subject}
-      </a>
-    </td>
-    <td>${objValue.writer}</td>
-    <td>${objValue.date}</td>
-    <td>${objValue.views}</td>
-  </tr>
+    <tr>
+      <td>${index + 1}</td>
+      <td>
+        <a onmouseover={mouseOver(event)}
+            onmouseout={mouseOut(event)}
+            href="/board/view.html?index=${objValue.index}"
+        >
+          ${objValue.subject}
+        </a>
+      </td>
+      <td>${objValue.writer}</td>
+      <td>${objValue.date}</td>
+      <td>${objValue.views}</td>
+    </tr>
   `;
 };
 
-// mouseover 시 글자 색 변경
+// mouseover 시 제목 글자 색 변경
 const mouseOver = (event) => {
   event.target.style.color = "#ccc";
 };
@@ -45,7 +46,7 @@ const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
   tbody.innerHTML += template(i, boardsObj[i]);
-  boardsObj[i].refresh = false;
+  boardsObj[i].refresh = true;
   const refreshStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", refreshStr);
 }
