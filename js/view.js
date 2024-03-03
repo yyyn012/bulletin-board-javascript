@@ -8,7 +8,7 @@ const index = idx.split("=")[1];
 const board = boardsObj[index];
 const beforeUrl = document.referrer;
 
-// 조회수
+// 조회수 설정
 if (!board.refresh) {
   board.views++;
   board.refresh = true;
@@ -17,17 +17,17 @@ if (!board.refresh) {
 } else {
   if (beforeUrl === " ") {
     board.views++;
-    const viewCountStr = JSON.stringify(boardsObj);
+    const viewCountStr = localStorage.getItem("boards");
     localStorage.setItem("boards", viewCountStr);
   }
 }
 
 // 데이터 출력
-const viewForm = document.querySelectorAll("#view-form > div");
+const viewFrmDiv = document.querySelectorAll("#view-form > div");
 
-for (let i = 0; i < viewForm.length; i++) {
-  const id = viewForm[i].id;
-  viewForm[i].innerHTML += " " + board[id];
+for (let i = 0; i < viewFrmDiv.length; i++) {
+  const id = viewFrmDiv[i].id;
+  viewFrmDiv[i].innerHTML += " " + board[id];
 }
 
 // 수정 버튼
