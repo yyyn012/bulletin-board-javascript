@@ -51,7 +51,7 @@ const submitHandler = (e) => {
 
   try {
     // 데이터 가져오기
-    const boardsObj = localStorage.getItem("boards");
+    const boardsObj = JSON.parse(localStorage.getItem("boards"));
 
     // new Board의 새로운 객체 생성 및 push
     const index = boardsObj.length;
@@ -59,7 +59,7 @@ const submitHandler = (e) => {
     boardsObj.push(instance);
 
     // boards 저장
-    const boardsStr = JSON.stringify(boardsStr);
+    const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
     location.href = "/board/view.html?index=" + index;
   } catch (e) {
