@@ -17,17 +17,17 @@ if (!board.refresh) {
 } else {
   if (beforeUrl === " ") {
     board.views++;
-    const viewCountStr = localStorage.getItem("boards");
+    const viewCountStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", viewCountStr);
   }
 }
 
 // 데이터 출력
-const viewFrmDiv = document.querySelectorAll("#view-form > div");
+const viewFormDiv = document.querySelectorAll("#view-form > div");
 
-for (let i = 0; i < viewFrmDiv.length; i++) {
-  const id = viewFrmDiv[i].id;
-  viewFrmDiv[i].innerHTML += " " + board[id];
+for (let i = 0; i < viewFormDiv.length; i++) {
+  const id = viewFormDiv[i].id;
+  viewFormDiv[i].innerHTML += " " + board[id];
 }
 
 // 수정 버튼
@@ -44,10 +44,11 @@ const deleteBtn = document.querySelector("#delete");
 
 const deleteBtnHandler = (e) => {
   boardsObj.splice(index, 1);
+  // 삭제된 인덱스 값을 제외하고 남아있는 인덱스 값 한 칸씩 앞으로 옮기기
   for (let i = 0; i < boardsObj.length; i++) {
     boardsObj[i].index = i;
   }
-
+  // 데이터 저장
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", setBoardsStr);
   location.href = "/board/list.html";

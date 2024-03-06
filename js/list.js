@@ -3,7 +3,7 @@
 // 데이터 가져오기
 let boardsStr = localStorage.getItem("boards");
 
-// boards 초기값 지정
+// boards 초기값 지정하기
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
   localStorage.setItem("boards", listStr);
@@ -15,24 +15,22 @@ const boardsObj = JSON.parse(boardsStr);
 // 템플릿 생성
 const template = (index, objValue) => {
   return `
-    <tr>
+   <tr>
       <td>${index + 1}</td>
       <td>
         <a onmouseover={mouseOver(event)}
             onmouseout={mouseOut(event)}
             href="/board/view.html?index=${objValue.index}"
-        >
-          ${objValue.subject}
-        </a>
+        >${objValue.subject}</a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
-      <td>${objValue.views}</td>
+      <td>${objValue.views}</td> 
     </tr>
   `;
 };
 
-// mouseover 시 제목 글자 색 변경
+// 제목에 mouseover 시 글자 색 바꾸기
 const mouseOver = (event) => {
   event.target.style.color = "#ccc";
 };
