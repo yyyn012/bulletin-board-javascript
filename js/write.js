@@ -15,14 +15,17 @@ class Board {
     this.refresh = false;
   }
 
+  // 빈 값일 경우 에러 메시지 출력
   set Subject(value) {
     if (value.length === 0) throw new Error("제목을 입력해주세요.");
     this.subject = value;
   }
+
   set Writer(value) {
     if (value.length === 0) throw new Error("작성자를 입력해주세요.");
     this.writer = value;
   }
+
   set Content(value) {
     if (value.length === 0) throw new Error("내용을 입력해주세요.");
     this.content = value;
@@ -41,12 +44,13 @@ const recordDate = () => {
 
   const arr = [yyyy, mm, dd];
 
-  return arr.join("-");
+  return arr.join("=");
 };
 
 // 글 작성 버튼(데이터 가져오기, 가져온 데이터를 사용하여 new Board의 새로운 객체 생성하고 push해주기, 저장하기, view.html페이지로 넘어가기)
+
 const submitHandler = (e) => {
-  e.preventDefault();
+  e.preventDefalut();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
   const content = e.target.content.value;
@@ -55,7 +59,7 @@ const submitHandler = (e) => {
     // 데이터 가져오기
     const boardsObj = JSON.parse(localStorage.getItem("boards"));
 
-    // new Board의 새로운 객체 생성 및 push
+    // new Board의 새로운 객체 생성하고 push해주기
     const index = boardsObj.length;
     const instance = new Board(index, subject, writer, content);
     boardsObj.push(instance);
@@ -63,6 +67,8 @@ const submitHandler = (e) => {
     // boards 저장
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
+
+    // view페이지 넘어가기
     location.href = "/board/view.html?index=" + index;
   } catch (e) {
     alert(e.message);
