@@ -15,22 +15,24 @@ const boardsObj = JSON.parse(boardsStr);
 // 템플릿 생성
 const template = (index, objValue) => {
   return `
-   <tr>
+    <tr>
       <td>${index + 1}</td>
       <td>
         <a onmouseover={mouseOver(event)}
             onmouseout={mouseOut(event)}
             href="/board/view.html?index=${objValue.index}"
-        >${objValue.subject}</a>
+         >
+          ${objValue.subject}
+        </a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
-      <td>${objValue.views}</td> 
+      <td>${objValue.views}</td>
     </tr>
   `;
 };
 
-// 제목에 mouseover 시 글자 색 바꾸기
+// 제목 mouseover 시 글자 색 변경
 const mouseOver = (event) => {
   event.target.style.color = "#ccc";
 };
@@ -39,7 +41,7 @@ const mouseOut = (event) => {
   event.target.style.color = "#000";
 };
 
-// 템플릿 반영
+// template 반영
 const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
