@@ -3,7 +3,7 @@
 
 const writeForm = document.querySelector("#write-form");
 
-// 데이터 기본 틀
+// 데이터 기본 틀 만들기
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
     this.index = indexNum;
@@ -15,7 +15,7 @@ class Board {
     this.refresh = false;
   }
 
-  // 값 설정 시 빈 값 체크
+  // 빈 값일 경우 에러 메시지 출력
   set Subject(value) {
     if (value.length === 0) throw new Error("제목을 입력해주세요.");
     this.subject = value;
@@ -32,7 +32,7 @@ class Board {
   }
 }
 
-// 날짜 반환 함수
+// 날짜 변환 함수
 const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
@@ -47,7 +47,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 글 작성 버튼
+// 글 작성 버튼 (데이터 가져오기, 가져온 데이터를 사용하여 new Board의 새로운 객체 생성하고 push해주기, 저장하기, view.html페이지로 넘어가기)
 const submitHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -55,16 +55,16 @@ const submitHandler = (e) => {
   const content = e.target.content.value;
 
   try {
+    // new Board 새로운 객체 생성하고 push하기
     const boardsObj = JSON.parse(localStorage.getItem("boards"));
-
-    // 객체 추가
     const index = boardsObj.length;
     const instance = new Board(index, subject, writer, content);
     boardsObj.push(instance);
 
-    // boards 저장
+    // 저장하기
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
+
     location.href = "/board/view.html?index=" + index;
   } catch (e) {
     alert(e.message);

@@ -44,7 +44,7 @@ const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
   tbody.innerHTML += template(i, boardsObj[i]);
-  boardsObj[i].refresh = false;
+  boardsObj.refresh = false;
   const refreshStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", refreshStr);
 }
