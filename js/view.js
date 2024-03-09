@@ -3,9 +3,11 @@
 // 데이터 가져오기
 const boardsStr = localStorage.getItem("boards");
 const boardsObj = JSON.parse(boardsStr);
+
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
+
 const beforeUrl = document.referrer;
 
 // 조회수 설정
@@ -44,16 +46,13 @@ const deleteBtn = document.querySelector("#delete");
 
 const deleteBtnHandler = (e) => {
   boardsObj.splice(index, 1);
-  // 삭제된 인덱스 값을 제외하고 남아있는 인덱스 값 한 칸씩 앞으로 옮기기
   for (let i = 0; i < boardsObj.length; i++) {
     boardsObj[i].index = i;
   }
-  // 데이터 저장
+
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", setBoardsStr);
   location.href = "/board/list.html";
-
-  alert("삭제되었습니다.");
 };
 
 deleteBtn.addEventListener("click", deleteBtnHandler);
