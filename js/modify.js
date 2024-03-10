@@ -3,6 +3,7 @@
 // 데이터 가져오기
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
+
 const idx = location.search;
 const index = idx.split("=")[1];
 const boardsObj = JSON.parse(localStorage.getItem("boards"));
@@ -15,7 +16,7 @@ for (let i = 0; i < modifyFormList.length; i++) {
   element.value = board[id];
 }
 
-// 작성한 입력 값이 빈 값인 지 검사
+// 빈 값 검사하기
 const isEmpty = (subject, writer, content) => {
   if (subject.length === 0) throw new Error("제목을 입력해주세요.");
   if (writer.length === 0) throw new Error("작성자를 입력해주세요.");
@@ -37,7 +38,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정완료 버튼
+// 수정 완료 버튼
 const modifyHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
