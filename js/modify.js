@@ -4,7 +4,7 @@
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
 const idx = location.search;
-const index = split("=")[1];
+const index = idx.split("=")[1];
 const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const board = boardsObj[index];
 
@@ -26,7 +26,7 @@ const isEmpty = (subject, writer, content) => {
 const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
-  let mm = date.getMonth();
+  let mm = date.getMonth() + 1;
   let dd = date.getDate();
 
   mm = (mm > 9 ? "" : 0) + mm;

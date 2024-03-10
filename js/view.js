@@ -53,6 +53,8 @@ const deleteBtnHandler = (e) => {
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", setBoardsStr);
   location.href = "/board/list.html";
+
+  alert("삭제되었습니다.");
 };
 
 deleteBtn.addEventListener("click", deleteBtnHandler);
