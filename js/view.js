@@ -24,7 +24,7 @@ if (!board.refresh) {
   }
 }
 
-// 데이터 출력
+// 데이터
 const viewFormDiv = document.querySelectorAll("#view-form > div");
 
 for (let i = 0; i < viewFormDiv.length; i++) {
@@ -46,7 +46,6 @@ const deleteBtn = document.querySelector("#delete");
 
 const deleteBtnHandler = (e) => {
   boardsObj.splice(index, 1);
-
   for (let i = 0; i < boardsObj.length; i++) {
     boardsObj[i].index = i;
   }
