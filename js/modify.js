@@ -4,12 +4,12 @@
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
 
+const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const idx = location.search;
 const index = idx.split("=")[1];
-const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const board = boardsObj[index];
 
-// 게시글의 데이터 값 출력
+// 게시글 출력하기
 for (let i = 0; i < modifyFormList.length; i++) {
   const element = modifyFormList[i].childNodes[3];
   const id = element.name;
@@ -46,6 +46,7 @@ const modifyHandler = (e) => {
   const content = e.target.content.value;
 
   try {
+    // 빈 값 검사하고 저장 후 view.html로 이동
     isEmpty(subject, writer, content);
     board.subject = subject;
     board.writer = writer;
@@ -53,6 +54,7 @@ const modifyHandler = (e) => {
     board.date = recordDate();
 
     const boardsStr = JSON.stringify(boardsObj);
+
     localStorage.setItem("boards", boardsStr);
     location.href = "/board/view.html" + idx;
   } catch (e) {
@@ -61,6 +63,8 @@ const modifyHandler = (e) => {
   }
 };
 
+modifyForm.addEventListener("submit", modifyHandler);
+
 // 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
 
@@ -68,5 +72,4 @@ const backBtnHandler = (e) => {
   location.href = document.referrer;
 };
 
-modifyForm.addEventListener("submit", modifyHandler);
 backBtn.addEventListener("click", backBtnHandler);
