@@ -5,6 +5,7 @@ const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
 
 const boardsObj = JSON.parse(localStorage.getItem("boards"));
+
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
@@ -39,14 +40,14 @@ const recordDate = () => {
 };
 
 // 수정 완료 버튼
-const modifyHandler = (e) => {
+const modifyBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
   const content = e.target.content.value;
 
   try {
-    // 빈 값 검사하고 저장 후 view.html로 이동
+    // 빈 값 검사하고 저장, view.html로 이동하기
     isEmpty(subject, writer, content);
     board.subject = subject;
     board.writer = writer;
@@ -56,6 +57,7 @@ const modifyHandler = (e) => {
     const boardsStr = JSON.stringify(boardsObj);
 
     localStorage.setItem("boards", boardsStr);
+
     location.href = "/board/view.html" + idx;
   } catch (e) {
     alert(e.message);
@@ -63,7 +65,7 @@ const modifyHandler = (e) => {
   }
 };
 
-modifyForm.addEventListener("submit", modifyHandler);
+modifyForm.addEventListener("submit", modifyBtnHandler);
 
 // 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");

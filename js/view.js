@@ -1,8 +1,7 @@
 // 데이터 가져오기, 조회수 설정, 데이터 출력, 수정(해당 수정 페이지로 이동), 삭제 버튼(삭제 후 인덱스 값 앞으로 당기기)
 
 // 데이터 가져오기
-const boardsStr = localStorage.getItem("boards");
-const boardsObj = JSON.parse(boardsStr);
+const boardsObj = JSON.parse(localStorage.getItem("boards"));
 
 const idx = location.search;
 const index = idx.split("=")[1];
@@ -24,12 +23,14 @@ if (!board.refresh) {
   }
 }
 
-// 데이터
+// 데이터 출력
 const viewFormDiv = document.querySelectorAll("#view-form > div");
 
 for (let i = 0; i < viewFormDiv.length; i++) {
   const id = viewFormDiv[i].id;
   viewFormDiv[i].innerHTML += " " + board[id];
+  const boardsStr = JSON.stringify(boardsObj);
+  localStorage.setItem("boards", boardsStr);
 }
 
 // 수정 버튼

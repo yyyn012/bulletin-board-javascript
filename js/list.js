@@ -6,8 +6,8 @@ let boardsStr = localStorage.getItem("boards");
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  localStorage.setItem("boards", listStr);
   boardsStr = listStr;
+  localStorage.setItem("boards", listStr);
 }
 
 const boardsObj = JSON.parse(boardsStr);
@@ -30,7 +30,7 @@ const template = (index, objValue) => {
   `;
 };
 
-// 제목에 마우스오버 시 글자 색 변경
+// mouseover 시 글자 색 변경
 const mouseOver = (event) => {
   event.target.style.color = "#ccc";
 };
