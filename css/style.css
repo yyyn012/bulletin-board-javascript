@@ -144,8 +144,8 @@ textarea {
 
 #view-form > div {
   width: auto;
-  height: 60px;
-  padding: 10px;
+  height: auto;
+  padding: 20px;
   border-bottom: 1px solid #ccc;
 }
 
