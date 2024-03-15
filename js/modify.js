@@ -1,13 +1,13 @@
-// 데이터 가져와서 게시글 출력하기, 빈 값 검사하기, 날짜 변환 함수, 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기), 뒤로 가기 버튼
+// 데이터 가져오기, 게시글 출력하고 저장하기, 빈 값 검사하기, 날짜 변환 함수, 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기), 뒤로 가기 버튼
 
 // 데이터 가져오기
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
 
-const boardsObj = JSON.parse(localStorage.getItem("boards"));
-
 const idx = location.search;
 const index = idx.split("=")[1];
+
+const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const board = boardsObj[index];
 
 // 게시글 출력하기
@@ -39,7 +39,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정 완료 버튼
+// 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
 const modifyBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -55,9 +55,7 @@ const modifyBtnHandler = (e) => {
     board.date = recordDate();
 
     const boardsStr = JSON.stringify(boardsObj);
-
     localStorage.setItem("boards", boardsStr);
-
     location.href = "/board/view.html" + idx;
   } catch (e) {
     alert(e.message);

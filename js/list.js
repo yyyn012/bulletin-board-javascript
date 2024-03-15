@@ -12,16 +12,17 @@ if (boardsStr === null) {
 
 const boardsObj = JSON.parse(boardsStr);
 
-// template 생성
+// 템플릿 생성
 const template = (index, objValue) => {
   return `
     <tr>
       <td>${index + 1}</td>
       <td>
         <a onmouseover={mouseOver(event)}
-          onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"
-        >${objValue.subject}</a>
+            onmouseout={mouseOut(event)}
+          href="/board/view.html?index=${objValue.index}">
+          ${objValue.subject}
+        </a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
@@ -39,7 +40,7 @@ const mouseOut = (event) => {
   event.target.style.color = "#000";
 };
 
-// template 반영
+// 템플릿 반영
 const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
