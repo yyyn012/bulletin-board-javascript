@@ -6,13 +6,13 @@ let boardsStr = localStorage.getItem("boards");
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  boardsStr = listStr;
   localStorage.setItem("boards", listStr);
+  boardsStr = listStr;
 }
 
 const boardsObj = JSON.parse(boardsStr);
 
-// 템플릿 생성
+// template 생성
 const template = (index, objValue) => {
   return `
     <tr>
@@ -20,9 +20,8 @@ const template = (index, objValue) => {
       <td>
         <a onmouseover={mouseOver(event)}
             onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}">
-          ${objValue.subject}
-        </a>
+            href="/board/view.html?index=${objValue.index}"
+        >${objValue.subject}</a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
@@ -40,7 +39,7 @@ const mouseOut = (event) => {
   event.target.style.color = "#000";
 };
 
-// 템플릿 반영
+// template 적용
 const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
