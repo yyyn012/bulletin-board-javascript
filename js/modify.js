@@ -40,27 +40,21 @@ const recordDate = () => {
 
 // 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
 
-const modifyBtnHandler = (e) => {
+const modifyHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
   const content = e.target.content.value;
 
   try {
-    // 빈 값 검사하기
     isEmpty(subject, writer, content);
-
-    // 유저가 입력한 값 알맞은 자리에 넣어주기
     board.subject = subject;
     board.writer = writer;
     board.content = content;
     board.date = recordDate();
 
-    // 저장하기
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
-
-    // view.html로 이동하기
     location.href = "/board/view.html" + idx;
   } catch (e) {
     alert(e.message);
@@ -68,9 +62,9 @@ const modifyBtnHandler = (e) => {
   }
 };
 
-modifyForm.addEventListener("submit", modifyBtnHandler);
+modifyForm.addEventListener("submit", modifyHandler);
 
-//  뒤로 가기 버튼
+// 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
 
 const backBtnHandler = (e) => {
