@@ -38,9 +38,8 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
-
-const modifyHandler = (e) => {
+// 수정 완료 버튼
+const modifyBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
@@ -62,7 +61,7 @@ const modifyHandler = (e) => {
   }
 };
 
-modifyForm.addEventListener("submit", modifyHandler);
+modifyForm.addEventListener("submit", modifyBtnHandler);
 
 // 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");

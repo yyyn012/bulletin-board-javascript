@@ -47,7 +47,6 @@ const recordDate = () => {
 };
 
 // 글 작성 버튼(데이터 가져오기, 가져온 데이터를 사용하여 new Board의 새로운 객체 생성하고 push해주기, 저장하기, view.html페이지로 넘어가기)
-
 const submitHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;

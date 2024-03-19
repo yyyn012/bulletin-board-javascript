@@ -23,6 +23,7 @@ if (!board.refresh) {
 }
 
 // 데이터 출력
+
 const viewFormDiv = document.querySelectorAll("#view-form > div");
 
 for (let i = 0; i < viewFormDiv.length; i++) {
