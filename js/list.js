@@ -18,11 +18,11 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a "/board/view.html?index=${objValue.index}"
+        <a href="/board/view.html?index=${objValue.index}"
           onmouseover={mouseOver(event)}
           onmouseout={mouseOut(event)}
         >
-      ${objValue.subject}
+          ${objValue.subject}
         </a>
       </td>
       <td>${objValue.writer}</td>
@@ -41,7 +41,7 @@ const mouseOut = (event) => {
   event.target.style.color = "#000";
 };
 
-// template 적용
+// template 반영
 const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {

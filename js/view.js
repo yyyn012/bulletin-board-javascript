@@ -5,7 +5,6 @@ const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
-
 const beforeUrl = document.referrer;
 
 // 조회수 설정
@@ -23,7 +22,6 @@ if (!board.refresh) {
 }
 
 // 데이터 출력
-
 const viewFormDiv = document.querySelectorAll("#view-form > div");
 
 for (let i = 0; i < viewFormDiv.length; i++) {
@@ -37,7 +35,7 @@ for (let i = 0; i < viewFormDiv.length; i++) {
 const modifyBtn = document.querySelector("#modify");
 
 const modifyBtnHandler = (e) => {
-  location = "/board/modify.html" + idx;
+  location.href = "/board/modify.html" + idx;
 };
 
 modifyBtn.addEventListener("click", modifyBtnHandler);
