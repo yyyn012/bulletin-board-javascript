@@ -60,9 +60,9 @@ const submitHandler = (e) => {
     const instance = new Board(index, subject, writer, content);
     boardsObj.push(instance);
 
+    // 저장하기
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
-
     location.href = "/board/view.html?index=" + index;
   } catch (e) {
     alert(e.message);

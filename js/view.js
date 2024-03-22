@@ -5,6 +5,7 @@ const boardsObj = JSON.parse(localStorage.getItem("boards"));
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
+
 const beforeUrl = document.referrer;
 
 // 조회수 설정
