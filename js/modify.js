@@ -38,7 +38,7 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
+// 수정 완료 버튼
 const modifyBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
@@ -54,6 +54,7 @@ const modifyBtnHandler = (e) => {
 
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem("boards", boardsStr);
+
     location.href = "/board/view.html" + idx;
   } catch (e) {
     alert(e.message);

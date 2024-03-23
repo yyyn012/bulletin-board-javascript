@@ -2,6 +2,7 @@
 
 // 데이터 가져오기
 const boardsObj = JSON.parse(localStorage.getItem("boards"));
+
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];

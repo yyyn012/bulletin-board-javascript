@@ -6,8 +6,8 @@ let boardsStr = localStorage.getItem("boards");
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  boardsStr = listStr;
   localStorage.setItem("boards", listStr);
+  boardsStr = listStr;
 }
 
 const boardsObj = JSON.parse(boardsStr);
@@ -41,7 +41,7 @@ const mouseOut = (event) => {
   event.target.style.color = "#000";
 };
 
-// template 반영
+// template 적용
 const tbody = document.querySelector("tbody");
 
 for (let i = 0; i < boardsObj.length; i++) {
