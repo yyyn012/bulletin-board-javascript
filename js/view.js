@@ -24,11 +24,11 @@ if (!board.refresh) {
 }
 
 // 데이터 출력
-const viewFormDiv = document.querySelectorAll("#view-form > div");
+const viewFormList = document.querySelectorAll("#view-form > div");
 
-for (let i = 0; i < viewFormDiv.length; i++) {
-  const id = viewFormDiv[i].id;
-  viewFormDiv[i].innerHTML += " " + board[id];
+for (let i = 0; i < viewFormList.length; i++) {
+  const id = viewFormList[i].id;
+  viewFormList[i].innerHTML += " " + board[id];
   const boardsStr = JSON.stringify(boardsObj);
   localStorage.setItem("boards", boardsStr);
 }
