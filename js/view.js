@@ -1,7 +1,8 @@
 // 데이터 가져오기, 조회수 설정, 데이터 출력, 수정(해당 수정 페이지로 이동), 삭제 버튼(삭제 후 인덱스 값 앞으로 당기기)
 
 // 데이터 가져오기
-const boardsObj = JSON.parse(localStorage.getItem("boards"));
+const BOARDS = "boards";
+const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
 const idx = location.search;
 const index = idx.split("=")[1];
@@ -14,12 +15,12 @@ if (!board.refresh) {
   board.views++;
   board.refresh = true;
   const viewCountStr = JSON.stringify(boardsObj);
-  localStorage.setItem("boards", viewCountStr);
+  localStorage.setItem(BOARDS, viewCountStr);
 } else {
   if (beforeUrl === " ") {
     board.views++;
     const viewCountStr = JSON.stringify(boardsObj);
-    localStorage.setItem("boards", viewCountStr);
+    localStorage.setItem(BOARDS, viewCountStr);
   }
 }
 
@@ -30,7 +31,7 @@ for (let i = 0; i < viewFormList.length; i++) {
   const id = viewFormList[i].id;
   viewFormList[i].innerHTML += " " + board[id];
   const boardsStr = JSON.stringify(boardsObj);
-  localStorage.setItem("boards", boardsStr);
+  localStorage.setItem(BOARDS, boardsStr);
 }
 
 // 수정 버튼
@@ -53,7 +54,7 @@ const deleteBtnHandler = (e) => {
   }
 
   const setBoardsStr = JSON.stringify(boardsObj);
-  localStorage.setItem("boards", setBoardsStr);
+  localStorage.setItem(BOARDS, setBoardsStr);
   location.href = "/board/list.html";
 
   alert("삭제되었습니다.");
