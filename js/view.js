@@ -30,8 +30,6 @@ const viewFormList = document.querySelectorAll("#view-form > div");
 for (let i = 0; i < viewFormList.length; i++) {
   const id = viewFormList[i].id;
   viewFormList[i].innerHTML += " " + board[id];
-  const boardsStr = JSON.stringify(boardsObj);
-  localStorage.setItem(BOARDS, boardsStr);
 }
 
 // 수정 버튼

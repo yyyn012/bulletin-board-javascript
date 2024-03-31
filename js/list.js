@@ -2,12 +2,12 @@
 
 // 데이터 가져오기
 const BOARDS = "boards";
-let boardsStr = localStorage.getItem(BOARDS);
+const boardsStr = localStorage.getItem(BOARDS);
 
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  boardsStr = listStr;
+  listStr = boardsStr;
   localStorage.setItem(BOARDS, listStr);
 }
 
@@ -19,9 +19,9 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a href="/board/view.html?index=${objValue.index}"
-        onmouseover={mouseOver(event)}
-        onmouseout={mouseOut(event)}
+        <a onmouseover={mouseOver(event)}
+          onmouseout={mouseOut(event)}
+          href="/board/view.html?index=${objValue.index}"
         >${objValue.subject}</a>
       </td>
       <td>${objValue.writer}</td>
