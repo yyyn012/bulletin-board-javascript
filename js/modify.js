@@ -26,7 +26,7 @@ const isEmpty = (subject, writer, content) => {
 };
 
 // 날짜 변환 함수
-const recordDate = () => {
+function recordDate() {
   const date = new Date();
   const yyyy = date.getFullYear();
   let mm = date.getMonth() + 1;
@@ -38,7 +38,7 @@ const recordDate = () => {
   const arr = [yyyy, mm, dd];
 
   return arr.join("-");
-};
+}
 
 // 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
 const modifyBtnHandler = (e) => {
