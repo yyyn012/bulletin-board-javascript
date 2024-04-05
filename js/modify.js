@@ -4,7 +4,6 @@
 const BOARDS = "boards";
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
-
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
 const idx = location.search;

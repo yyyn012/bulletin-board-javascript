@@ -19,10 +19,12 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a onmouseover={mouseOver(event)}
-          onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"
-        >${objValue.subject}</a>
+        <a onmouseover={onmouseOver(event)}
+          onmouseout={onmouseOut(event)}
+          href="/board/view.html?index=${objValue.index}"  
+        >
+          ${objValue.subject}
+        </a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
