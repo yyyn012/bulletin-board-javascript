@@ -19,12 +19,10 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a onmouseover={onmouseOver(event)}
-          onmouseout={onmouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"  
-        >
-          ${objValue.subject}
-        </a>
+        <a href="/board/view.html?index=${objValue.index}"
+          onmouseover={mouseOver(event)}
+          onmouseout={mouseOut(event)}
+        >${objValue.subject}</a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
@@ -35,11 +33,13 @@ const template = (index, objValue) => {
 
 // mouseover 시 글자 색 변경
 const mouseOver = (event) => {
-  event.target.style.color = "#ccc";
+  event.target.style.color = "rgb(177, 227, 228)";
+  event.target.style.fontWeight = "700";
 };
 
 const mouseOut = (event) => {
   event.target.style.color = "#000";
+  event.target.style.fontWeight = "500";
 };
 
 // template 반영

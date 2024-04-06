@@ -3,7 +3,6 @@
 
 const BOARDS = "boards";
 const writeForm = document.querySelector("#write-form");
-const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
 // 데이터 기본 틀 만들기
 class Board {
@@ -18,17 +17,17 @@ class Board {
   }
 
   set Subject(value) {
-    if (value.length === 0) throw new Error("제목을 입력해주세요.");
+    if (value.length === 0) throw new Error("제목을 작성해주세요.");
     this.subject = value;
   }
 
   set Writer(value) {
-    if (value.length === 0) throw new Error("작성자를 입력해주세요.");
+    if (value.length === 0) throw new Error("작성자를 작성해주세요.");
     this.writer = value;
   }
 
   set Content(value) {
-    if (value.length === 0) throw new Error("내용을 입력해주세요.");
+    if (value.length === 0) throw new Error("내용을 작성해주세요.");
     this.content = value;
   }
 }
@@ -49,13 +48,15 @@ const recordDate = () => {
 };
 
 // 글 작성 버튼(데이터 가져오기, 가져온 데이터를 사용하여 new Board의 새로운 객체 생성하고 push해주기, 저장하기, view.html페이지로 넘어가기)
-const submitHandler = (e) => {
+
+const submitBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
   const content = e.target.content.value;
 
   try {
+    const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
     const index = boardsObj.length;
     const instance = new Board(index, subject, writer, content);
     boardsObj.push(instance);
@@ -69,4 +70,4 @@ const submitHandler = (e) => {
   }
 };
 
-writeForm.addEventListener("submit", submitHandler);
+writeForm.addEventListener("submit", submitBtnHandler);

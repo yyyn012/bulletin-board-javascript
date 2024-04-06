@@ -2,9 +2,10 @@
 
 // 데이터 가져오기
 const BOARDS = "boards";
+const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
+
 const modifyForm = document.querySelector("#modify-form");
 const modifyFormList = document.querySelectorAll("#modify-form > div");
-const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
 const idx = location.search;
 const index = idx.split("=")[1];
@@ -17,7 +18,7 @@ for (let i = 0; i < modifyFormList.length; i++) {
   element.value = board[id];
 }
 
-// 빈 값 검사하기
+//  빈 값 검사하기
 const isEmpty = (subject, writer, content) => {
   if (subject.length === 0) throw new Error("제목을 입력해주세요.");
   if (writer.length === 0) throw new Error("작성자를 입력해주세요.");
