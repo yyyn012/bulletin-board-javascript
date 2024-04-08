@@ -12,8 +12,8 @@ class Board {
     this.Writer = writerStr;
     this.Content = contentStr;
     this.date = recordDate();
-    this.views = -1;
     this.refresh = false;
+    this.views = -1;
   }
 
   set Subject(value) {
@@ -48,8 +48,7 @@ const recordDate = () => {
 };
 
 // 글 작성 버튼(데이터 가져오기, 가져온 데이터를 사용하여 new Board의 새로운 객체 생성하고 push해주기, 저장하기, view.html페이지로 넘어가기)
-
-const submitBtnHandler = (e) => {
+const submitHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
@@ -70,4 +69,4 @@ const submitBtnHandler = (e) => {
   }
 };
 
-writeForm.addEventListener("submit", submitBtnHandler);
+writeForm.addEventListener("submit", submitHandler);
