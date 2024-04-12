@@ -12,22 +12,22 @@ class Board {
     this.Writer = writerStr;
     this.Content = contentStr;
     this.date = recordDate();
-    this.refresh = false;
     this.views = -1;
+    this.refresh = false;
   }
 
   set Subject(value) {
-    if (value.length === 0) throw new Error("제목을 작성해주세요.");
+    if (value.length === 0) throw new Error("제목을 입력해주세요.");
     this.subject = value;
   }
 
   set Writer(value) {
-    if (value.length === 0) throw new Error("작성자를 작성해주세요.");
+    if (value.length === 0) throw new Error("작성자를 입력해주세요.");
     this.writer = value;
   }
 
   set Content(value) {
-    if (value.length === 0) throw new Error("내용을 작성해주세요.");
+    if (value.length === 0) throw new Error("내용을 입력해주세요.");
     this.content = value;
   }
 }

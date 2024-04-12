@@ -4,12 +4,12 @@
 const BOARDS = "boards";
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
+const modifyForm = document.querySelector("#modify-form");
+const modifyFormList = document.querySelectorAll("#modify-form > div");
+
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
-
-const modifyForm = document.querySelector("#modify-form");
-const modifyFormList = document.querySelectorAll("#modify-form > div");
 
 // 게시글 출력하기
 for (let i = 0; i < modifyFormList.length; i++) {
@@ -20,13 +20,13 @@ for (let i = 0; i < modifyFormList.length; i++) {
 
 // 빈 값 검사하기
 const isEmpty = (subject, writer, content) => {
-  if (subject.length === 0) throw new Error("제목을 작성해주세요.");
-  if (writer.length === 0) throw new Error("작성자를 작성해주세요.");
-  if (content.length === 0) throw new Error("내용을 작성해주세요.");
+  if (subject.length === 0) throw new Error("제목을 입력해주세요.");
+  if (writer.length === 0) throw new Error("작성자를 입력해주세요.");
+  if (content.length === 0) throw new Error("내용을 입력해주세요.");
 };
 
 // 날짜 변환 함수
-function recordDate() {
+const recordDate = () => {
   const date = new Date();
   const yyyy = date.getFullYear();
   let mm = date.getMonth() + 1;
@@ -38,7 +38,7 @@ function recordDate() {
   const arr = [yyyy, mm, dd];
 
   return arr.join("-");
-}
+};
 
 // 수정 완료 버튼(유저가 입력한 값 알맞은 자리에 넣어주고 저장하기, view.html로 이동하기)
 const modifyBtnHandler = (e) => {
