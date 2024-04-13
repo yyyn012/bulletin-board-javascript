@@ -19,9 +19,9 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a onmouseover={mouseOver(event)}
+        <a href="/board/view.html?index=${objValue.index}"
+          onmouseover={mouseOver(event)}
           onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"
         >${objValue.subject}</a>
       </td>
       <td>${objValue.writer}</td>
@@ -31,7 +31,7 @@ const template = (index, objValue) => {
   `;
 };
 
-// mouseover 시 글자 색, 글자 굵기 변경
+// mouseover 시 글자 색, 굵기 변경
 const mouseOver = (event) => {
   event.target.style.color = "rgb(177, 227, 228)";
   event.target.style.fontWeight = "700";
