@@ -50,7 +50,6 @@ const deleteBtnHandler = (e) => {
   for (let i = 0; i < boardsObj.length; i++) {
     boardsObj[i].index = i;
   }
-
   const setBoardsStr = JSON.stringify(boardsObj);
   localStorage.setItem(BOARDS, setBoardsStr);
   location.href = "/board/list.html";
