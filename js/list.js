@@ -7,7 +7,7 @@ const boardsStr = localStorage.getItem(BOARDS);
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  boardsStr = listStr;
+  listStr = boardsStr;
   localStorage.setItem(BOARDS, listStr);
 }
 

@@ -2,10 +2,10 @@
 
 // 데이터 가져오기
 const BOARDS = "boards";
+const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
+
 const idx = location.search;
 const index = idx.split("=")[1];
-
-const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 const board = boardsObj[index];
 
 const beforeUrl = document.referrer;

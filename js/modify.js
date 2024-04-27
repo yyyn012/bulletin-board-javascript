@@ -4,12 +4,12 @@
 const BOARDS = "boards";
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
-const modifyForm = document.querySelector("#modify-form");
-const modifyFormList = document.querySelectorAll("#modify-form > div");
-
 const idx = location.search;
 const index = idx.split("=")[1];
 const board = boardsObj[index];
+
+const modifyForm = document.querySelector("#modify-form");
+const modifyFormList = document.querySelectorAll("#modify-form > div");
 
 // 게시글 출력하기
 for (let i = 0; i < modifyFormList.length; i++) {
@@ -40,8 +40,8 @@ const recordDate = () => {
   return arr.join("-");
 };
 
-// 수정 완료
-const modifyBtn = (e) => {
+// 수정 완료 버튼
+const modifybtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
@@ -63,7 +63,7 @@ const modifyBtn = (e) => {
   }
 };
 
-modifyForm.addEventListener("submit", modifyBtn);
+modifyForm.addEventListener("submit", modifybtnHandler);
 
 // 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
