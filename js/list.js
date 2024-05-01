@@ -7,7 +7,7 @@ const boardsStr = localStorage.getItem(BOARDS);
 // boards 초기값 지정
 if (boardsStr === null) {
   const listStr = JSON.stringify([]);
-  listStr = boardsStr;
+  boardsStr = listStr;
   localStorage.setItem(BOARDS, listStr);
 }
 
@@ -19,21 +19,23 @@ const template = (index, objValue) => {
     <tr>
       <td>${index + 1}</td>
       <td>
-        <a onmouseover={mouseOver(event)}
+        <a href="/board/view.html?index=${objValue.index}"
+          onmouseover={mouseOver(event)}
           onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"
-        >${objValue.subject}</a>
+        >
+          ${objValue.subject}
+        </a>
       </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
-      <td>${objValue.views}</td>
+      <td>${objValue.view}</td>
     </tr>
   `;
 };
 
-// mouseover 시 글자 색, 굵기 변경
+// mouseover 시 글자 색, 글자 굵기 변경
 const mouseOver = (event) => {
-  event.target.style.color = "rgb(177, 227, 228)";
+  event.target.style.color = "rgb(167, 215, 215)";
   event.target.style.fontWeight = "700";
 };
 
