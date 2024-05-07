@@ -4,8 +4,6 @@
 const BOARDS = "boards";
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 
-const writeForm = document.querySelector("#write-form");
-
 // 데이터 기본 틀 만들기
 class Board {
   constructor(indexNum, subjectStr, writerStr, contentStr) {
@@ -13,9 +11,9 @@ class Board {
     this.Subject = subjectStr;
     this.Writer = writerStr;
     this.Content = contentStr;
-    this.date = recordDate();
     this.views = -1;
     this.refresh = false;
+    this.date = recordDate();
   }
 
   set Subject(value) {
@@ -61,11 +59,14 @@ const submitBtn = (e) => {
 
     const boardsStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, boardsStr);
+
     location.href = "/board/view.html?index=" + index;
   } catch (e) {
     alert(e.message);
     console.error(e);
   }
 };
+
+const writeForm = document.querySelector("#write-form");
 
 writeForm.addEventListener("submit", submitBtn);

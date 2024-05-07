@@ -41,7 +41,7 @@ const recordDate = () => {
 };
 
 // 수정 완료 버튼
-const modifybtnHandler = (e) => {
+const modifyBtnHandler = (e) => {
   e.preventDefault();
   const subject = e.target.subject.value;
   const writer = e.target.writer.value;
@@ -63,7 +63,7 @@ const modifybtnHandler = (e) => {
   }
 };
 
-modifyForm.addEventListener("submit", modifybtnHandler);
+modifyForm.addEventListener("submit", modifyBtnHandler);
 
 // 뒤로 가기 버튼
 const backBtn = document.querySelector("#back");
