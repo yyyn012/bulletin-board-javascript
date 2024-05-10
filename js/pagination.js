@@ -24,62 +24,20 @@ let current_block = 1;
         */
 let data = new Array();
 
-//    게시글 데이터를 담고 있는 객체를 1000개 추가한다.
-for (let i = 1; i <= totalPage; i++) {
-  data[i] = {
-    notice_num: i,
-    title: "제목" + i,
-    writer: "작성자" + i,
-    date_created: "2022-10-07",
-    Lookkup_num: i,
-    like: i,
-  };
-}
 // 게시글 데이터 출력하기
 // 매개변수 : 선택 블럭
 function post_data_print(block) {
   // 초기화
   // 게시글 title 제외하고 모두 제거
-  let post_list = document.querySelectorAll(".data_row");
-  post_list.forEach(function (item) {
-    item.remove();
-  });
+  // let post_list = document.querySelectorAll(".data_row");
+  // post_list.forEach(function (item) {
+  //   item.remove();
+  // });
 
   // 게시글 출력 공간
   let notice_board = document.querySelector(".notice_board");
   // 출력 첫 페이지 번호
   let start = totalPage - page_num * (block - 1);
-  for (let i = start; i >= 1 && i > start - page_num; i--) {
-    // 게시글 데이터 가져와서 게시글 요소 생성 및 추가
-    // 번호, 제목, 작성자, 작성일, 조회수, 좋아요
-    // data[i].notice_num data[i].title data[i].writer data[i].date_created data[i].Lookkup_num data[i].like
-
-    let post = document.createElement("ul");
-    post.className = "board_row";
-    post.className = "data_row";
-
-    let classname = ["w70", "w500", "w120", "w100", "w100", "w100"];
-
-    let post_data = [
-      data[i].notice_num,
-      data[i].title,
-      data[i].writer,
-      data[i].date_created,
-      data[i].Lookkup_num,
-      data[i].like,
-    ];
-
-    //게시글 생성
-    for (let j = 0; j < classname.length; j++) {
-      let li = document.createElement("li");
-      li.className = classname[j];
-      li.textContent = post_data[j];
-      post.appendChild(li);
-    }
-
-    // 게시글 추가
-    notice_board.appendChild(post);
-  }
 }
 
 // 블럭 출력하기
