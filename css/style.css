@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* index.html */
@@ -131,15 +132,6 @@ textarea {
   border-radius: 15px;
 }
 
-@media (max-width: 1300px) {
-  .table-area,
-  .form-area,
-  table,
-  #view-form {
-    width: 95vw;
-  }
-}
-
 /* view */
 
 #view-form > div {
@@ -192,4 +184,28 @@ button:active {
   position: absolute;
   right: 80px;
   bottom: 0;
+}
+
+/* pagination */
+
+.pagination {
+  width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.pagination > button:hover {
+  background-color: rgb(167, 215, 215);
+  font-weight: 800;
+}
+
+@media (max-width: 1300px) {
+  .table-area,
+  .form-area,
+  table,
+  #view-form,
+  .pagination {
+    width: 95vw;
+  }
 }
