@@ -191,8 +191,19 @@ button:active {
 .pagination {
   width: 1300px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
+  padding-top: 20px;
+}
+
+.block {
+  padding: 0 24px;
+}
+
+.pagination > button {
+  display: inline-block;
+  width: 43px;
+  height: 33px;
 }
 
 .pagination > button:hover {

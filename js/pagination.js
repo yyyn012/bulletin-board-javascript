@@ -1,5 +1,5 @@
 //    총 게시글 수
-let totalPage = 1000;
+let totalPage = 100;
 
 //  한 페이지 당 출력되는 게시글 갯수
 let page_num = 10;
@@ -82,6 +82,8 @@ function block_print(front_block) {
     // 버튼을 생성한다.
     let button = document.createElement("button");
     button.textContent = i;
+    button.style.width = "28px";
+    // button.style.padding = "25px";
     // 버튼을 클릭하면 게시글이 변경되는 이벤트 추가
     button.addEventListener("click", function (event) {
       post_data_print(i);

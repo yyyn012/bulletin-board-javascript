@@ -20,6 +20,10 @@ const template = (index, objValue) => {
       <a href="/board/view.html?index=${objValue.index}"
         onmouseover={mouseOver(event)}
         onmouseout={mouseOut(event)}
+        style="
+        display:inline-block;
+        width:90px;
+        "
       >
         ${objValue.subject}
       </a>
