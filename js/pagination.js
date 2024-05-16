@@ -9,34 +9,23 @@ const page_num = 5;
 const block_num = 5;
 
 // 블록의 총 수를 계산한다.
-const total_block = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
+let total_block = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
 
 // 현재 블록 위치를 알려준다
-const current_block = 1;
+let current_block = 1;
 
-// template 생성
-// const postTemplate = (index, objValue) => {
-//   return `
-//   <tr>
-//     <td>${index + 1}</td>
-//     <td>
-//       <a href="/board/view.html?index=${objValue.index}"
-//         onmouseover={mouseOver(event)}
-//         onmouseout={mouseOut(event)}
-//         style="
-//         display:inline-block;
-//         width:90px;
-//         "
-//       >
-//         ${objValue.subject}
-//       </a>
-//     </td>
-//     <td>${objValue.writer}</td>
-//     <td>${objValue.date}</td>
-//     <td>${objValue.views}</td>
-//   </tr>
-//   `;
-// };
+let data = new Board(index, subsect, writer, date, views);
+
+//    게시글 데이터를 담고 있는 객체를 1000개 추가한다.
+for (let i = 1; i <= totalPage; i++) {
+  boardsStr.data[i] = {
+    index: i,
+    subject: subsect,
+    writer: writer,
+    date: recordDate(),
+    views: views,
+  };
+}
 
 // 게시글 데이터 출력하기
 function post_data_print(block) {
@@ -50,7 +39,7 @@ function post_data_print(block) {
   const notice_board = document.querySelector(".notice_board");
 
   // 출력 첫 페이지 번호
-  const start = totalPage - page_num * (block - 1);
+  let start = totalPage - page_num * (block - 1);
 
   for (let i = start; i >= 1 && i > start - page_num; i--) {
     notice_board.innerHTML += template(i, boardsObj[i]);
