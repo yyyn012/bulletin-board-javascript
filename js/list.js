@@ -51,12 +51,12 @@ const mouseOut = (event) => {
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
 const tbody = document.querySelector("tbody");
 
-for (let i = 0; i < boardsObj.length; i++) {
-  tbody.innerHTML += template(i, boardsObj[i]);
-  boardsObj[i].refresh = false;
-  const refreshStr = JSON.stringify(boardsObj);
-  localStorage.setItem(BOARDS, refreshStr);
-}
+// for (let i = 0; i < boardsObj.length; i++) {
+//   tbody.innerHTML += template(i, boardsObj[i]);
+//   boardsObj[i].refresh = false;
+//   const refreshStr = JSON.stringify(boardsObj);
+//   localStorage.setItem(BOARDS, refreshStr);
+// }
 
 // pagination
 
@@ -68,17 +68,16 @@ let current_block = 1;
 
 // let block = document.querySelectorAll(".block");
 let noticeBoard = document.querySelector(".notice_board");
-let startPage = totalPage - page_num * (block - 1);
 
 // 페이지에 맞게 게시글 데이터 출력하는 함수
 function pagePrint(block) {
   tbody.remove();
 
-  let startPage = totalPage - page_num * (block - 1);
-
-  for (let i = startPage; i < page_num.lengh; i--) {
-    tbody.remove();
-    postList.innerHTML += template(i, boardsObj[i]);
+  for (let i = current_block; i < page_num.lengh; i--) {
+    tbody.innerHTML += template(i, boardsObj[i]);
+    boardsObj[i].refresh = false;
+    const refreshStr = JSON.stringify(boardsObj);
+    localStorage.setItem(BOARDS, refreshStr);
   }
 }
 
