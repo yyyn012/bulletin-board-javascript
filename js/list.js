@@ -66,22 +66,21 @@ let block_num = 5;
 let total_block = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
 let current_block = 1;
 
-let block = document.querySelectorAll(".block");
+// let block = document.querySelectorAll(".block");
 let noticeBoard = document.querySelector(".notice_board");
+let startPage = totalPage - page_num * (block - 1);
 
 // 페이지에 맞게 게시글 데이터 출력하는 함수
 function pagePrint(block) {
   tbody.remove();
-  console.log(template(0));
 
-  for (let i = totalPage / 5; i < 0; i--) {
-    tbody.innerHTML += template(i, boardsObj[i]);
+  let startPage = totalPage - page_num * (block - 1);
+
+  for (let i = startPage; i < page_num.lengh; i--) {
+    tbody.remove();
+    postList.innerHTML += template(i, boardsObj[i]);
   }
-
-  // 게시글 가져오기
 }
-
-// pagePrint();
 
 // 블럭 출력하기
 // 매개변수 : 가장 앞에 오는 블럭
@@ -141,6 +140,6 @@ function next() {
 }
 // 화면 로드 시 실행되는 이벤트
 window.onload = function () {
-  pagePrint(0);
-  blockPrint(0);
+  pagePrint(1);
+  blockPrint(1);
 };
