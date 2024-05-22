@@ -61,62 +61,80 @@ const tbody = document.querySelector("tbody");
 // pagination
 
 let totalPage = boardsObj.length;
-let page_num = 5;
-let block_num = 5;
-let total_block = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
-let current_block = 1;
-
-// let block = document.querySelectorAll(".block");
-let noticeBoard = document.querySelector(".notice_board");
+let pageNum = 5;
+let blockNum = 5;
+let totalBlock = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
+let currentBlock = 1;
 
 // 페이지에 맞게 게시글 데이터 출력하는 함수
-function pagePrint(block) {
-  tbody.remove();
+// function pagePrint(block) {
+//   tbody.remove();
+// }
 
-  for (let i = current_block; i < page_num.lengh; i--) {
+let data = new Array();
+
+let dataPrint = () => {
+  for (let i = 0; i < boardsObj.length; i++) {
     tbody.innerHTML += template(i, boardsObj[i]);
     boardsObj[i].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, refreshStr);
   }
+};
+
+//    게시글 데이터를 담고 있는 객체를 1000개 추가한다.
+for (let i = 1; i <= totalPage; i++) {
+  data[i] = dataPrint[i];
+}
+
+// 게시글 데이터 출력하기
+// 매개변수 : 선택 블럭
+function pagePrint(block) {
+  // 초기화
+  // 게시글 title 제외하고 모두 제거
+  let postList = document.querySelectorAll(".data_row");
+  postList.forEach(function (item) {
+    item.remove();
+  });
+
+  // 게시글 출력 공간
+  let noticeBoard = document.querySelector(".notice_board");
+  // 출력 첫 페이지 번호
+  let start = totalPage - pageNum * (block - 1);
 }
 
 // 블럭 출력하기
 // 매개변수 : 가장 앞에 오는 블럭
-function blockPrint(front_block) {
-  current_block = front_block;
+function blockPrint(frontBlock) {
+  currentBlock = frontBlock;
   const beforeBtn = document.querySelector(".before_move");
   const nextBtn = document.querySelector(".next_move");
 
-  if (front_block <= 1) {
+  if (frontBlock <= 1) {
     beforeBtn.style.visibility = "hidden";
   } else {
     beforeBtn.style.visibility = "visible";
   }
 
   // 다음으로 갈 블럭이 없으면
-  if (front_block + block_num >= total_block) {
+  if (frontBlock + blockNum >= totalBlock) {
     nextBtn.style.visibility = "hidden";
   } else {
     nextBtn.style.visibility = "visible";
   }
 
   // 블럭을 추가할 공간
-  let block_box = document.querySelector(".block");
+  let blockBox = document.querySelector(".block");
   // 기존 블럭 모두 삭제
-  block_box.replaceChildren();
+  blockBox.replaceChildren();
 
   console.log("remove");
 
   //front_block부터 total_block 또는 block_num까지 생성 및 추가
-  for (
-    let i = front_block;
-    i <= total_block && i < front_block + block_num;
-    i++
-  ) {
+  for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
     console.log("add element");
 
-    // 버튼을 생성한다.
+    // 버튼을 생성한다.s
     let pageButton = document.createElement("button");
     pageButton.textContent = i;
     // 버튼을 클릭하면 게시글이 변경되는 이벤트 추가
@@ -124,17 +142,17 @@ function blockPrint(front_block) {
       pagePrint(i);
     });
     // 블럭에 추가한다.
-    block_box.appendChild(pageButton);
+    blockBox.appendChild(pageButton);
   }
 }
 
 function before() {
-  blockPrint(current_block - block_num);
+  blockPrint(currentBlock - blockNum);
   console.log("이전");
 }
 
 function next() {
-  blockPrint(current_block + block_num);
+  blockPrint(currentBlock + blockNum);
   console.log("다음");
 }
 // 화면 로드 시 실행되는 이벤트
