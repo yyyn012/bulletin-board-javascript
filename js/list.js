@@ -66,42 +66,25 @@ let blockNum = 5;
 let totalBlock = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
 let currentBlock = 1;
 
-// 페이지에 맞게 게시글 데이터 출력하는 함수
-// function pagePrint(block) {
-//   tbody.remove();
-// }
+let dataPrint = (block) => {
+  tbody.remove();
 
-let data = new Array();
-
-let dataPrint = () => {
-  for (let i = 0; i < boardsObj.length; i++) {
+  let start = totalPage - pageNum * (block - 1);
+  for (let i = start; i >= 1 && i > start - pageNum; i--) {
     tbody.innerHTML += template(i, boardsObj[i]);
     boardsObj[i].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, refreshStr);
   }
+
+  for (let j = 1; j < boardsObj.length; j += 5) {
+    let temp;
+    temp = dataPrint(j).slice(j, j + 5);
+    console.log(temp[1]);
+  }
 };
 
-//    게시글 데이터를 담고 있는 객체를 1000개 추가한다.
-for (let i = 1; i <= totalPage; i++) {
-  data[i] = dataPrint[i];
-}
-
 // 게시글 데이터 출력하기
-// 매개변수 : 선택 블럭
-function pagePrint(block) {
-  // 초기화
-  // 게시글 title 제외하고 모두 제거
-  let postList = document.querySelectorAll(".data_row");
-  postList.forEach(function (item) {
-    item.remove();
-  });
-
-  // 게시글 출력 공간
-  let noticeBoard = document.querySelector(".notice_board");
-  // 출력 첫 페이지 번호
-  let start = totalPage - pageNum * (block - 1);
-}
 
 // 블럭 출력하기
 // 매개변수 : 가장 앞에 오는 블럭
@@ -157,6 +140,6 @@ function next() {
 }
 // 화면 로드 시 실행되는 이벤트
 window.onload = function () {
-  pagePrint(1);
+  dataPrint(1);
   blockPrint(1);
 };
