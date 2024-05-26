@@ -11,28 +11,50 @@ if (boardsStr === null) {
   localStorage.setItem(BOARDS, listStr);
 }
 
-// template 생성
-const template = (index, objValue) => {
-  return `
-  <tr>
-    <td>${index + 1}</td>
-    <td>
-      <a href="/board/view.html?index=${objValue.index}"
-        onmouseover={mouseOver(event)}
-        onmouseout={mouseOut(event)}
-        style="
-        display:inline-block;
-        width:90px;
-        "
-      >
-        ${objValue.subject}
-      </a>
-    </td>
-    <td>${objValue.writer}</td>
-    <td>${objValue.date}</td>
-    <td>${objValue.views}</td>
-  </tr>
-  `;
+// pagination
+
+const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
+const tbody = document.querySelector("tbody");
+
+// 데이터 배열로 저장하기
+let totalPage = [];
+for (let i = 0; i < boardsObj.length; i++) {
+  totalPage.push(boardsObj[i]);
+}
+
+// 변수 선언
+let pageLength = totalPage.length;
+let pageNum = 5;
+let blockNum = 5;
+let totalBlock = Math.ceil(pageLength / blockNum);
+let maxPage = Math.ceil(pageLength / pageNum);
+
+// 데이터 출력 함수
+
+dataPrint = (index, objValue) => {
+  tbody.innerHTML = `
+      <tr>
+        <td>${index + 1}</td>
+        <td>
+          <a href="/board/view.html?index=${objValue.index}"
+            onmouseover={mouseOver(event)}
+            onmouseout={mouseOut(event)}
+            style="
+            display:inline-block;
+            width:90px;
+            "
+          >
+            ${objValue.subject}
+          </a>
+        </td>
+        <td>${objValue.writer}</td>
+        <td>${objValue.date}</td>
+        <td>${objValue.views}</td>
+      </tr>
+      `;
+  boardsObj[index].refresh = false;
+  const refreshStr = JSON.stringify(boardsObj);
+  localStorage.setItem(BOARDS, refreshStr);
 };
 
 // mouseover 시 글자 색 / 굵기 변경
@@ -46,50 +68,7 @@ const mouseOut = (event) => {
   event.target.style.fontWeight = "500";
 };
 
-// pagination
-
-const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
-const tbody = document.querySelector("tbody");
-
-// 데이터 배열로 저장하기
-let totalPage = [];
-
-for (let i = 0; i < boardsObj.length; i++) {
-  totalPage.push(boardsObj[i]);
-}
-
-let pageLength = boardsObj.length - 1;
-let pageNum = 5;
-let blockNum = 5;
-let totalBlock = totalPage % 5 == 0 ? totalPage / 5 : totalPage / 5 + 1;
-let currentBlock = 1;
-
-let dataBlock = [];
-
-// 저장된 데이터 5개씩 꺼내 출력하는 함수
-// const sliceBoardsStr = (block) => {
-//   let start = block * pageNum;
-//   console.log(start);
-//   for (let i = start; i < 0; --i) {
-//     data = totalPage.slice(i, 1);
-//     dataBlock.push(data);
-//     dataPrint(data);
-//     console.log(dataBlock);
-//   }
-//   tbody.remove();
-// };
-dataPrint = (data) => {
-  for (let j = data.length - 1; j <= data.length; j--) {
-    tbody.innerHTML += template(j, boardsObj[j]);
-    boardsObj[j].refresh = false;
-    const refreshStr = JSON.stringify(boardsObj);
-    localStorage.setItem(BOARDS, refreshStr);
-  }
-};
-
-console.log(dataPrint(2));
-
-// 게시글 데이터 출력하기
+// 버튼 출력
 
 function blockPrint(frontBlock) {
   currentBlock = frontBlock;
