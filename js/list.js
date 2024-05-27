@@ -28,6 +28,7 @@ let pageNum = 5;
 let blockNum = 5;
 let totalBlock = Math.ceil(pageLength / blockNum);
 let maxPage = Math.ceil(pageLength / pageNum);
+let page = 1;
 
 // 데이터 출력 함수
 
@@ -71,7 +72,7 @@ const mouseOut = (event) => {
 // 버튼 출력
 
 function blockPrint(frontBlock) {
-  currentBlock = frontBlock;
+  page = frontBlock;
   const beforeBtn = document.querySelector(".before_move");
   const nextBtn = document.querySelector(".next_move");
 
@@ -96,12 +97,15 @@ function blockPrint(frontBlock) {
   for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
     console.log("add element");
 
-    // 버튼을 생성한다.s
+    // 버튼을 생성한다.
     let pageButton = document.createElement("button");
     pageButton.textContent = i;
     // 버튼을 클릭하면 게시글이 변경되는 이벤트 추가
     pageButton.addEventListener("click", function (event) {
-      pagePrint(i);
+      for (let j = i - 1; j < i + 5; j++) {
+        console.log(dataPrint(i, boardsObj[i]));
+        // tbody.innerHTML += dataPrint(i, boardsObj[i]);
+      }
     });
     // 블럭에 추가한다.
     blockBox.appendChild(pageButton);
@@ -109,17 +113,16 @@ function blockPrint(frontBlock) {
 }
 
 function before() {
-  blockPrint(currentBlock - blockNum);
+  blockPrint(page - blockNum);
   console.log("이전");
 }
 
 function next() {
-  blockPrint(currentBlock + blockNum);
+  blockPrint(page + blockNum);
   console.log("다음");
 }
 // 화면 로드 시 실행되는 이벤트
 window.onload = function () {
-  sliceBoardsStr(1);
-
+  dataPrint(0, boardsObj[0]);
   blockPrint(1);
 };
