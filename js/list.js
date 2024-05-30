@@ -3,6 +3,8 @@
 // 데이터 가져오기
 const BOARDS = "boards";
 const boardsStr = localStorage.getItem(BOARDS);
+const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
+const tbody = document.querySelector("tbody");
 
 // boards 초기값 지정
 if (boardsStr === null) {
@@ -13,27 +15,22 @@ if (boardsStr === null) {
 
 // pagination
 
-const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
-const tbody = document.querySelector("tbody");
-
 // 데이터 배열로 저장하기
 let totalPage = [];
 for (let i = 0; i < boardsObj.length; i++) {
   totalPage.push(boardsObj[i]);
 }
 
-// 변수 선언
+// pagination 변수
 let pageLength = totalPage.length;
 let pageNum = 5;
 let blockNum = 5;
 let totalBlock = Math.ceil(pageLength / blockNum);
-let maxPage = Math.ceil(pageLength / pageNum);
 let page = 1;
 
 // 데이터 출력 함수
-
-dataPrint = (index, objValue) => {
-  tbody.innerHTML = `
+const template = (index, objValue) => {
+  return `
       <tr>
         <td>${index + 1}</td>
         <td>
@@ -53,9 +50,6 @@ dataPrint = (index, objValue) => {
         <td>${objValue.views}</td>
       </tr>
       `;
-  boardsObj[index].refresh = false;
-  const refreshStr = JSON.stringify(boardsObj);
-  localStorage.setItem(BOARDS, refreshStr);
 };
 
 // mouseover 시 글자 색 / 굵기 변경
@@ -69,8 +63,27 @@ const mouseOut = (event) => {
   event.target.style.fontWeight = "500";
 };
 
-// 버튼 출력
+// 버튼에 따라 데이터 나눠서 보여주기
+const sliceDataPrint = (block) => {
+  // 리스트 초기화
+  while (tbody.hasChildNodes()) {
+    tbody.removeChild(tbody.lastChild);
+  }
 
+  // 화면에 pageNum만큼의 글 생성
+  for (
+    let i = (block - 1) * pageNum + 1;
+    i <= block * pageNum && i <= pageLength;
+    i++
+  ) {
+    tbody.innerHTML += template(i - 1, boardsObj[i - 1]);
+    boardsObj[i - 1].refresh = false;
+    const refreshStr = JSON.stringify(boardsObj);
+    localStorage.setItem("boards", refreshStr);
+  }
+};
+
+// 버튼 출력
 function blockPrint(frontBlock) {
   page = frontBlock;
   const beforeBtn = document.querySelector(".before_move");
@@ -91,38 +104,30 @@ function blockPrint(frontBlock) {
   let blockBox = document.querySelector(".block");
   blockBox.replaceChildren();
 
-  console.log("remove");
-
-  // front_block부터 total_block 또는 block_num까지 생성 및 추가
+  // front_block부터 total_block 또는 block_num까지 버튼 생성 및 추가하기
   for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
-    console.log("add element");
-
-    // 버튼을 생성한다.
+    // 버튼 생성
     let pageButton = document.createElement("button");
     pageButton.textContent = i;
-    // 버튼을 클릭하면 게시글이 변경되는 이벤트 추가
+
+    // 버튼을 클릭하면 게시글이 변경되는 이벤트
     pageButton.addEventListener("click", function (event) {
-      for (let j = i - 1; j < i + 5; j++) {
-        console.log(dataPrint(i, boardsObj[i]));
-        // tbody.innerHTML += dataPrint(i, boardsObj[i]);
-      }
+      sliceDataPrint(i);
     });
-    // 블럭에 추가한다.
+
     blockBox.appendChild(pageButton);
   }
 }
 
 function before() {
   blockPrint(page - blockNum);
-  console.log("이전");
 }
 
 function next() {
   blockPrint(page + blockNum);
-  console.log("다음");
 }
-// 화면 로드 시 실행되는 이벤트
+// 화면 새로고침 시 실행되는 이벤트
 window.onload = function () {
-  dataPrint(0, boardsObj[0]);
+  sliceDataPrint(1);
   blockPrint(1);
 };
