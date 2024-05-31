@@ -1,4 +1,4 @@
-// 데이터 가져오기, boards초기값 지정, 템플릿 생성 및 반영, 마우스 오버 시 제목 글자 색 변경
+// 데이터 가져오기, boards초기값 지정, pagination(데이터 배열로 저장하고 변수 지정 템플릿 생성 및 반영, 마우스 오버 시 제목 글자 색 변경, 버튼에 따라 데이터 나눠서 보여주기, 버튼 출력, before 버튼/next 버튼, 새로고침 시 최근 글부터 보여주기)
 
 // 데이터 가져오기
 const BOARDS = "boards";
@@ -23,9 +23,9 @@ for (let i = 0; i < boardsObj.length; i++) {
 
 // pagination 변수
 let pageLength = totalPage.length;
-let pageNum = 5;
+let pageNum = 10;
 let blockNum = 5;
-let totalBlock = Math.ceil(pageLength / blockNum);
+let totalBlock = Math.ceil(pageLength / pageNum);
 let page = 1;
 
 // 데이터 출력 함수
@@ -71,11 +71,9 @@ const sliceDataPrint = (block) => {
   }
 
   // 화면에 pageNum만큼의 글 생성
-  for (
-    let i = (block - 1) * pageNum + 1;
-    i <= block * pageNum && i <= pageLength;
-    i++
-  ) {
+  let start = pageLength - pageNum * (block - 1);
+
+  for (let i = start; i >= 1 && i > start - pageNum; i--) {
     tbody.innerHTML += template(i - 1, boardsObj[i - 1]);
     boardsObj[i - 1].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
@@ -119,6 +117,7 @@ function blockPrint(frontBlock) {
   }
 }
 
+// before 버튼, next 버튼
 function before() {
   blockPrint(page - blockNum);
 }
@@ -126,7 +125,7 @@ function before() {
 function next() {
   blockPrint(page + blockNum);
 }
-// 화면 새로고침 시 실행되는 이벤트
+// 새로고침 시 최근 글부터 보여주기
 window.onload = function () {
   sliceDataPrint(1);
   blockPrint(1);
