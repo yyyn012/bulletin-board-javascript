@@ -65,12 +65,12 @@ const mouseOut = (event) => {
 
 // 버튼에 따라 데이터 나눠서 보여주기
 const sliceDataPrint = (block) => {
-  // 리스트 초기화
+  // 리스트 초기화 ( tbody.hasChildNodes의 값이 유동적이므로 while문 사용)
   while (tbody.hasChildNodes()) {
-    tbody.removeChild(tbody.lastChild);
+    tbody.removeChild();
   }
 
-  // 화면에 pageNum만큼의 글 생성
+  // 화면에 pageNum의 값만큼 글 생성
   let start = pageLength - pageNum * (block - 1);
 
   for (let i = start; i >= 1 && i > start - pageNum; i--) {
@@ -108,7 +108,7 @@ function blockPrint(frontBlock) {
     let pageButton = document.createElement("button");
     pageButton.textContent = i;
 
-    // 버튼을 클릭하면 게시글이 변경되는 이벤트
+    // 버튼 클릭 시 게시글 변경
     pageButton.addEventListener("click", function (event) {
       sliceDataPrint(i);
     });
@@ -125,7 +125,8 @@ function before() {
 function next() {
   blockPrint(page + blockNum);
 }
-// 새로고침 시 최근 글부터 보여주기
+
+// 새로고침 시 최근 글(버튼이 1인 경우)부터 보여주기
 window.onload = function () {
   sliceDataPrint(1);
   blockPrint(1);
