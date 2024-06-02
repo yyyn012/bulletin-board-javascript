@@ -20,7 +20,6 @@ let totalPage = [];
 for (let i = 0; i < boardsObj.length; i++) {
   totalPage.push(boardsObj[i]);
 }
-
 // pagination 변수
 let pageLength = totalPage.length;
 const pageNum = 5;
@@ -30,25 +29,25 @@ let totalBlock = Math.ceil(pageLength / pageNum);
 // 데이터 출력 함수
 const template = (index, objValue) => {
   return `
-      <tr>
-        <td>${index + 1}</td>
-        <td>
-          <a href="/board/view.html?index=${objValue.index}"
-            onmouseover={mouseOver(event)}
-            onmouseout={mouseOut(event)}
-            style="
-            display:inline-block;
-            width:90px;
-            "
-          >
-            ${objValue.subject}
-          </a>
-        </td>
-        <td>${objValue.writer}</td>
-        <td>${objValue.date}</td>
-        <td>${objValue.views}</td>
-      </tr>
-      `;
+    <tr>
+      <td>${index + 1}</td>
+      <td>
+        <a href="/board/view.html?index=${objValue.index}"
+          onmouseover={mouseOver(event)}
+          onmouseout={mouseOut(event)}
+          style="
+          display:inline-block;
+          width:90px;
+          "
+        >
+          ${objValue.subject}
+        </a>
+      </td>
+      <td>${objValue.writer}</td>
+      <td>${objValue.date}</td>
+      <td>${objValue.views}</td>
+    </tr>
+  `;
 };
 
 // mouseover 시 글자 색 / 굵기 변경
@@ -69,24 +68,23 @@ const sliceDataPrint = (block) => {
     tbody.removeChild(tbody.lastChild);
   }
 
-  // 화면에 pageNum만큼씩의 글 생성
+  // 화면에 pageNum만큼씩의 글 최근 순으로 생성
   let start = pageLength - pageNum * (block - 1);
 
   for (let i = start; i >= 1 && i > start - pageNum; i--) {
     tbody.innerHTML += template(i - 1, boardsObj[i - 1]);
     boardsObj[i - 1].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
-    localStorage.setItem("boards", refreshStr);
+    localStorage.setItem(BOARDS, refreshStr);
   }
 };
 
 // 버튼 출력
 let page = 1;
-
 const blockPrint = (frontBlock) => {
   page = frontBlock;
-  const beforeBtn = document.querySelector(".before_move");
-  const nextBtn = document.querySelector(".next_move");
+  const beforeBtn = document.querySelector(".before_btn");
+  const nextBtn = document.querySelector(".next_btn");
   const HIDDEN = "hidden";
   const VISIBLE = "visible";
 
@@ -121,15 +119,15 @@ const blockPrint = (frontBlock) => {
 };
 
 // before 버튼, next 버튼
-function before() {
+const before = () => {
   blockPrint(page - blockNum);
-}
+};
 
-function next() {
+const next = () => {
   blockPrint(page + blockNum);
-}
+};
 
-// 새로고침 시 최근 글(버튼이 1인 경우)부터 보여주기
+// 새로고침 시 최근 글(=버튼이 1인 경우)부터 보여주기
 window.onload = () => {
   sliceDataPrint(1);
   blockPrint(1);
