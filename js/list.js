@@ -4,7 +4,7 @@
 const BOARDS = "boards";
 const boardsStr = localStorage.getItem(BOARDS);
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
-const tbody = document.querySelector("tbody");
+const noticeBoard = document.querySelector(".notice_board");
 
 // boards 초기값 지정
 if (boardsStr === null) {
@@ -63,16 +63,16 @@ const mouseOut = (event) => {
 
 // 버튼에 따라 데이터 나눠서 보여주는 함수
 const sliceDataPrint = (block) => {
-  // 리스트 초기화 ( tbody.hasChildNodes의 값이 유동적이므로 while문 사용)
-  while (tbody.hasChildNodes()) {
-    tbody.removeChild(tbody.lastChild);
+  // 리스트 초기화 ( noticeBoard.hasChildNodes의 값이 유동적이므로 while문 사용)
+  while (noticeBoard.hasChildNodes()) {
+    noticeBoard.removeChild(noticeBoard.lastChild);
   }
 
   // 화면에 pageNum만큼씩의 글 최근 순으로 생성
   let start = pageLength - pageNum * (block - 1);
 
   for (let i = start; i >= 1 && i > start - pageNum; i--) {
-    tbody.innerHTML += template(i - 1, boardsObj[i - 1]);
+    noticeBoard.innerHTML += template(i - 1, boardsObj[i - 1]);
     boardsObj[i - 1].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, refreshStr);
@@ -103,7 +103,7 @@ const blockPrint = (frontBlock) => {
   let blockBox = document.querySelector(".block");
   blockBox.replaceChildren();
 
-  // frontBlock부터 totalBlock 또는 block_num까지 버튼 생성 및 추가하기
+  // frontBlock부터 버튼 생성 및 추가하기
   for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
     // 버튼 생성
     let pageButton = document.createElement("button");
