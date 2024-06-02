@@ -87,23 +87,25 @@ const blockPrint = (frontBlock) => {
   page = frontBlock;
   const beforeBtn = document.querySelector(".before_move");
   const nextBtn = document.querySelector(".next_move");
+  const HIDDEN = "hidden";
+  const VISIBLE = "visible";
 
   if (frontBlock <= 1) {
-    beforeBtn.style.visibility = "hidden";
+    beforeBtn.style.visibility = HIDDEN;
   } else {
-    beforeBtn.style.visibility = "visible";
+    beforeBtn.style.visibility = VISIBLE;
   }
 
   if (frontBlock + blockNum >= totalBlock) {
-    nextBtn.style.visibility = "hidden";
+    nextBtn.style.visibility = HIDDEN;
   } else {
-    nextBtn.style.visibility = "visible";
+    nextBtn.style.visibility = VISIBLE;
   }
 
   let blockBox = document.querySelector(".block");
   blockBox.replaceChildren();
 
-  // front_block부터 total_block 또는 block_num까지 버튼 생성 및 추가하기
+  // frontBlock부터 totalBlock 또는 block_num까지 버튼 생성 및 추가하기
   for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
     // 버튼 생성
     let pageButton = document.createElement("button");
@@ -128,7 +130,7 @@ function next() {
 }
 
 // 새로고침 시 최근 글(버튼이 1인 경우)부터 보여주기
-window.onload = function () {
+window.onload = () => {
   sliceDataPrint(1);
   blockPrint(1);
 };
