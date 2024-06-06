@@ -9,11 +9,11 @@ const index = idx.split("=")[1];
 const board = boardsObj[index];
 
 const modifyForm = document.querySelector("#modify-form");
-const modifyFormList = document.querySelectorAll("#modify-form > div");
+const modifyFormDiv = document.querySelectorAll("#modify-form > div");
 
 // 게시글 출력하기
-for (let i = 0; i < modifyFormList.length; i++) {
-  const element = modifyFormList[i].childNodes[3];
+for (let i = 0; i < modifyFormDiv.length; i++) {
+  const element = modifyFormDiv[i].childNodes[3];
   const id = element.name;
   element.value = board[id];
 }
