@@ -99,5 +99,26 @@ const blockPrint = (frontBlock) => {
 
   for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
     const pageButton = document.createElement("button");
+    pageButton.textContent = i;
+
+    pageButton.addEventListener("click", function (e) {
+      sliceDataPrint(i);
+    });
+    blockBox.appendChild(pageButton);
   }
+};
+
+// beforeBtn, nextBtn
+const before = () => {
+  blockPrint(page - blockNum);
+};
+
+const nextBtn = () => {
+  blockPrint(page + blockNum);
+};
+
+// 새로고침 시 최근 글 ( = 버튼이 1인 경우) 부터 보여주기
+window.onload = () => {
+  sliceDataPrint(1);
+  blockPrint(1);
 };
