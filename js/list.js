@@ -15,29 +15,32 @@ if (boardsStr === null) {
 
 // 변수 지정
 const boardsObj = JSON.parse(localStorage.getItem(BOARDS));
+
 let totalPage = [];
 for (let i = 0; i < boardsObj.length; i++) {
   totalPage.push(boardsObj[i]);
 }
+
 let pageLength = totalPage.length;
 let pageNum = 5;
 let blockNum = 5;
 let totalBlock = Math.ceil(pageLength / pageNum);
 
-// 템플릿 생성
+// template
 const template = (index, objValue) => {
   return `
     <tr>
-      <td>${index + 1}}</td>
       <td>
-        <a onmouseover={mouseOver(event)}
-          onmouseout={mouseOut(event)}
-          href="/board/view.html?index=${objValue.index}"
-          style="display:inline-block; width:90px;"
-        >
-          ${objValue.subject}
-        </a>
+        ${index + 1}
       </td>
+      <td>
+      <a href="/board/view.html?index=${objValue.index}"
+        style={display:inline-block; width:90px;}
+        onmouseover={mouseOver(event)}
+        onmouseout={mouseOut(event)}
+      >
+          ${objValue.subject}
+        </a></td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
       <td>${objValue.views}</td>
@@ -63,10 +66,9 @@ const sliceDataPrint = (block) => {
     noticeBoard.removeChild(noticeBoard.lastChild);
   }
 
-  let start = pageLength - pageNum * (block - 1);
-
-  for (let i = start; i >= 1 && i > start - pageNum; i--) {
-    noticeBoard.innerHTML += template(i - 1, boardsObj[i - 1]);
+  let startBlock = pageLength - pageNum * (block - 1);
+  for (i = startBlock; i >= 1 && i < pageNum; i--) {
+    noticeBoard.innerHTML += template([i - 1], boardsObj[i - 1]);
     boardsObj[i - 1].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, refreshStr);
@@ -93,27 +95,14 @@ const blockPrint = (frontBlock) => {
   } else {
     nextBtn.style.visibility = VISIBLE;
   }
-
-  let blockBox = document.querySelector(".block");
-  blockBox.replaceChildren();
-
-  for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
-    const pageButton = document.createElement("button");
-    pageButton.textContent = i;
-
-    pageButton.addEventListener("click", function (e) {
-      sliceDataPrint(i);
-    });
-    blockBox.appendChild(pageButton);
-  }
 };
 
-// beforeBtn, nextBtn
+// before 버튼 / next 버튼
 const before = () => {
   blockPrint(page - blockNum);
 };
 
-const nextBtn = () => {
+const next = () => {
   blockPrint(page + blockNum);
 };
 
