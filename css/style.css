@@ -197,7 +197,15 @@ button:active {
 }
 
 .block {
-  padding: 0 24px;
+  display: flex;
+  width: 220px;
+  height: 55px;
+}
+
+.block > button {
+  width: 20px;
+  height: 28px;
+  padding: 5px 0;
 }
 
 .pagination > button {

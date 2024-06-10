@@ -35,12 +35,13 @@ const template = (index, objValue) => {
       </td>
       <td>
       <a href="/board/view.html?index=${objValue.index}"
-        style={display:inline-block; width:90px;}
+        style="display:inline-block; width:90px;"
         onmouseover={mouseOver(event)}
         onmouseout={mouseOut(event)}
       >
           ${objValue.subject}
-        </a></td>
+        </a>
+      </td>
       <td>${objValue.writer}</td>
       <td>${objValue.date}</td>
       <td>${objValue.views}</td>
@@ -66,9 +67,9 @@ const sliceDataPrint = (block) => {
     noticeBoard.removeChild(noticeBoard.lastChild);
   }
 
-  let startBlock = pageLength - pageNum * (block - 1);
-  for (i = startBlock; i >= 1 && i < pageNum; i--) {
-    noticeBoard.innerHTML += template([i - 1], boardsObj[i - 1]);
+  let startPage = pageLength - pageNum * (block - 1);
+  for (let i = startBlock; i >= 1 && i < startPage - pageNum; i--) {
+    noticeBoard.innerHTML += template(i - 1, boardsObj[i - 1]);
     boardsObj[i - 1].refresh = false;
     const refreshStr = JSON.stringify(boardsObj);
     localStorage.setItem(BOARDS, refreshStr);
@@ -94,6 +95,19 @@ const blockPrint = (frontBlock) => {
     nextBtn.style.visibility = HIDDEN;
   } else {
     nextBtn.style.visibility = VISIBLE;
+  }
+
+  let blockBox = document.querySelector(".block");
+  blockBox.replaceChildren();
+
+  for (let i = frontBlock; i <= totalBlock && i < frontBlock + blockNum; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.textContent = i;
+
+    pageButton.addEventListener("click", function (e) {
+      sliceDataPrint(i);
+    });
+    blockBox.appendChild(pageButton);
   }
 };
 
