@@ -48,9 +48,9 @@ a {
   color: rgb(155, 229, 230);
 }
 
-h2 {
+.board_title {
   text-align: center;
-  padding: 50px 0 30px 50px;
+  padding: 50px 30px;
 }
 
 /* table and form */
@@ -84,6 +84,7 @@ td,
 th {
   text-align: center;
   padding: 13px;
+  min-width: 75px;
 }
 
 tr {
@@ -224,7 +225,33 @@ button:active {
   .form-area,
   table,
   #view-form,
+  #modify-form > div,
   .pagination {
     width: 95vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .table-area,
+  .form-area,
+  table,
+  #view-form,
+  .pagination {
+    padding-top: 20px;
+    width: 400px;
+  }
+
+  #view-form {
+    padding-top: 70px;
+  }
+
+  .board_title {
+    width: 200px;
+    margin: 0 auto;
+    padding: 50px 70px;
+  }
+
+  #modify-form > div {
+    width: 380px;
   }
 }
