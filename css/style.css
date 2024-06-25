@@ -181,11 +181,16 @@ textarea {
 .pagination > button,
 .block > button {
   border: none;
-  background-color: #ccc;
   border-radius: 5px;
   padding: 7px;
   margin: 7px;
   cursor: pointer;
+}
+
+.submit-btn,
+.btn-area > a,
+.block > button {
+  background-color: #ccc;
 }
 
 .btn-area > a:hover,
@@ -195,7 +200,6 @@ textarea {
 
 .submit-btn:active,
 .btn-area > a:active,
-.pagination > button:active,
 .block > button:active {
   box-shadow: inset;
   background-color: #bebdbd;
@@ -210,21 +214,31 @@ textarea {
   height: 32px;
 }
 
-/* pagination */
-
-.pagination {
-  width: 1300px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding-top: 20px;
-}
-
-.pagination > button,
 .submit-btn:hover,
 .btn-area > a:hover {
   background-color: rgb(167, 215, 215);
   font-weight: 800;
+}
+
+/* pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.pagination > button {
+  background-color: rgb(167, 215, 215);
+  width: 42px;
+  height: 31px;
+  font-weight: 800;
+  line-height: 1px;
+}
+
+.pagination > button:active {
+  transform: translate(1px, 1px);
+  box-shadow: inset;
 }
 
 @media (max-width: 1300px) {

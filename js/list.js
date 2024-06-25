@@ -32,7 +32,7 @@ let totalBlock = Math.ceil(pageLength / pageNum);
 const template = (index, objValue) => {
   return `
       <tr 
-      onClick="/board/view.html?index=${objValue.index}" 
+      onClick="location.href='/board/view.html?index=${objValue.index}'" 
       style="cursor:pointer;">
           <td>
             ${index + 1}
@@ -55,17 +55,6 @@ const template = (index, objValue) => {
         
       `;
 };
-
-// mouseover 시 글자 색 / 굵기 변경
-// const mouseOver = (event) => {
-//   event.target.style.color = "rgb(167, 215, 215)";
-//   event.target.style.fontWeight = "700";
-// };
-
-// const mouseOut = (event) => {
-//   event.target.style.color = "#000";
-//   event.target.style.fontWeight = "500";
-// };
 
 // 버튼에 따라 데이터 나눠서 보여주는 함수
 const noticeBoard = document.querySelector(".notice_board");
