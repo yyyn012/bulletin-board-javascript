@@ -84,11 +84,24 @@ td,
 th {
   text-align: center;
   padding: 13px;
-  min-width: 75px;
+  min-width: 80px;
 }
 
 tr {
   border-bottom: 1px solid #c1c1c1;
+}
+
+tr:hover a,
+tr:hover,
+td:hover a,
+td > a:hover {
+  color: rgb(155, 229, 230);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+th {
+  color: #000;
 }
 
 form {
@@ -159,23 +172,31 @@ textarea {
   justify-content: space-between;
 }
 
+.btn-area > a {
+  font-size: 13px;
+}
+
 .submit-btn,
-button {
+.btn-area > a,
+.pagination > button,
+.block > button {
   border: none;
   background-color: #ccc;
   border-radius: 5px;
   padding: 7px;
-  margin: 10px;
+  margin: 7px;
   cursor: pointer;
 }
 
-.submit-btn:hover,
-button:hover {
+.btn-area > a:hover,
+.block > button {
   background-color: #bebdbd;
 }
 
 .submit-btn:active,
-button:active {
+.btn-area > a:active,
+.pagination > button:active,
+.block > button:active {
   box-shadow: inset;
   background-color: #bebdbd;
   transform: translate(1px, 1px);
@@ -185,6 +206,8 @@ button:active {
   position: absolute;
   right: 80px;
   bottom: 0;
+  width: 54px;
+  height: 32px;
 }
 
 /* pagination */
@@ -197,25 +220,9 @@ button:active {
   padding-top: 20px;
 }
 
-.block {
-  display: flex;
-  width: 220px;
-  height: 55px;
-}
-
-.block > button {
-  width: 20px;
-  height: 28px;
-  padding: 5px 0;
-}
-
-.pagination > button {
-  display: inline-block;
-  width: 43px;
-  height: 33px;
-}
-
-.pagination > button:hover {
+.pagination > button,
+.submit-btn:hover,
+.btn-area > a:hover {
   background-color: rgb(167, 215, 215);
   font-weight: 800;
 }
